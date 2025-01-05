@@ -12,13 +12,23 @@ erDiagram
         DATETIME CreatedAt "생성 시각"
         DATETIME UpdatedAt "수정 시각"
     }
+    POINT_HISTORY{
+        BIGINT id PK "Primary Key, 포인트 내역 ID"
+        UUID user_id FK "Foreign Key, 사용자 ID"
+        BIGINT PaymentId FK "Foreign Key, 결제 ID"
+        DECIMAL RechargeAmount "충전 금액"
+        DECIMAL BalanceBefore "충전 전 잔액"
+        DECIMAL BalanceAfter "충전 후 잔액"
+        VARCHAR RechargeMethod "충전 수단(CARD/CASH)"
+        DATETIME UpdatedAt "충전 시간"
+    }
     QUEUE {
         BIGINT QueueId PK "Primary Key, 대기열 ID"
         UUID UserId FK "Foreign Key, 사용자 ID"
-        VARCHAR QueueStatus "대기열 상태"
-        DATETIME TokenCreatedAt "토큰 생성 시각"
-        DATETIME TokenExpiredAt "토큰 만료 시각"
-        DATETIME TokenRemovedAt "토큰 제거 시각"
+        VARCHAR QueueStatus "대기열 상태(WAIT/ACTIVE/EXPIRE)"
+        DATETIME CreatedAt "토큰 생성 시각"
+        DATETIME ExpiredAt "토큰 만료 시각"
+        DATETIME RemovedAt "토큰 제거 시각"
     }
     CONCERT {
         BIGINT ConcertId PK "Primary Key, 콘서트 ID"
@@ -66,11 +76,13 @@ erDiagram
         DATETIME CreatedAt "생성 시각"
     }
     USER ||--o{ QUEUE : "1:N"
+    USER ||--o{ POINT_HISTORY : "1:N"
     CONCERT ||--o{ SCHEDULE : "1:N"
     SCHEDULE ||--o{ SEAT : "1:N"
     SEAT ||--o{ RESERVATION : "1:N"
-    RESERVATION ||--o| PAYMENT : "1:1"
+    RESERVATION ||--o{ PAYMENT : "1:N"
     USER ||--o{ RESERVATION : "1:N"
+    PAYMENT ||--o{ POINT_HISTORY : "1:N"
 ```
 
 # 테이블 간 관계 설명
@@ -95,9 +107,13 @@ erDiagram
     - 하나의 사용자는 여러 예약을 생성할 수 있음.
     
 ## 6. 예약 테이블 ↔ 결제 테이블 
-    - 1:1 관계
-    - 하나의 예약은 하나의 결제만 가질 수 있음.
+    - 1:N 관계
+    - 하나의 예약은 여러개의 결제 내역을 가질 수 있다. (결제 취소/실패)
     
 ## 7. 결제 테이블 ↔ 좌석 테이블 
     - 좌석 번호(`SeatNumber`)와 콘서트 관련 정보는 결제 기록에 저장되지만, 직접 참조되지는 않음.
+    
+## 8. 결제 테이블 ↔ 포인트 내역 테이블
+    - 1:N
+    - 하나의 결제는 여러 포인트 충전 내역을 가질 수 있다.
 
