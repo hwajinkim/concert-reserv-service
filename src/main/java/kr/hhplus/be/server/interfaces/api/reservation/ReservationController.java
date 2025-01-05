@@ -1,5 +1,7 @@
 package kr.hhplus.be.server.interfaces.api.reservation;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
 import kr.hhplus.be.server.domain.payment.PaymentStatus;
@@ -15,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+@Tag(name = "좌석 예약 API", description = "좌석에 대해 예약 신청하는 api 입니다.")
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ReservationController {
 
     // 예약 API
+    @Operation(summary = "좌석 예약 신청")
     @PostMapping("/concerts/seats/reserve")
     public ApiResponse<ReservationResponse> createSeatReservation(@RequestBody ReservationRequest reservationRequest){
 
@@ -28,14 +32,5 @@ public class ReservationController {
                 67890L, ReservationState.PANDING,
                 LocalDateTime.of(2025,1,1,12,0,0, 0));
         return ApiResponse.success(ResponseCode.SEAT_RESERV_CREATE_SUCCESS.getMessage(), reservationResponse);
-    }
-
-    // 결제 API
-    @PostMapping("/reservations/pay")
-    public ApiResponse<PaymentResponse> createPayment(@RequestBody PaymentRequeset paymentRequeset){
-        PaymentResponse paymentResponse = new PaymentResponse(12345L, 12345L, 10L,
-                "Awesome Concert", LocalDateTime.of(2025, 1, 1, 19,0,0),
-                100.00, PaymentStatus.COMPLETED, LocalDateTime.of(2025, 1, 1, 12,0,0));
-        return ApiResponse.success(ResponseCode.PAYMENT_CREATED_SUCCESS.getMessage(), paymentResponse);
     }
 }

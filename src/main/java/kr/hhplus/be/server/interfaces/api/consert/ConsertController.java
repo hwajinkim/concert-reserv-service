@@ -1,5 +1,7 @@
 package kr.hhplus.be.server.interfaces.api.consert;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
 import kr.hhplus.be.server.domain.payment.PaymentStatus;
@@ -13,12 +15,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Tag(name = "예약 가능 날짜/좌석 조회 API", description = "예약 가능한 날짜와 좌석을 조회하는 api 입니다.")
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ConsertController {
 
     // 예약 가능 날짜 조회 API
+    @Operation(summary = "예약 가능 날짜 조회")
     @GetMapping("/concerts/schedules")
     public ApiResponse<ConsertResponse> getAvailableDates(){
         ScheduleResponse scheduleResponse = new ScheduleResponse(
@@ -38,6 +42,7 @@ public class ConsertController {
     }
 
     // 예약 가능 좌석 조회 API
+    @Operation(summary = "예약 가능 좌석 조회")
     @GetMapping("concerts/schedules/seats")
     public ApiResponse<ScheduleSeatResponse> getAvailableSeats(@RequestParam(name="scheduleId") Long scheduleId){
 
