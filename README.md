@@ -12,5 +12,8 @@
 3. [ERD 설계](https://github.com/hwajinkim/consert-reserv-service/blob/master/docs/erd/ERD.md)
 4. [시퀀스 다이어그램](https://github.com/hwajinkim/consert-reserv-service/blob/master/docs/sequence-diagram/sequenceDiagram.md)    
 5. [API 명세서](https://github.com/hwajinkim/consert-reserv-service/blob/master/docs/API/API_%EB%AA%85%EC%84%B8.md)
-<!-- 6. [아키텍처 구조]()-->
+ + Swagger API
+ ![Screenshot 2025-01-06 at 00 35 41](https://github.com/user-attachments/assets/3421a60c-b16b-492e-b847-06b705dc6d52)
+
+<!-- 6. [아키텍처 구조]()--> 
 
