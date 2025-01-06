@@ -3,6 +3,7 @@ package kr.hhplus.be.server.domain.concert;
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,4 +20,10 @@ public class Concert extends BaseEntity {
 
     @Column(nullable = false)
     private String concertName;
+
+    @Builder
+    public Concert(Long concertId, String concertName){
+        this.id = concertId;
+        this.concertName = concertName;
+    }
 }

@@ -3,6 +3,7 @@ package kr.hhplus.be.server.domain.payment;
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,4 +35,15 @@ public class Payment extends BaseEntity {
 
     @Column(nullable = false)
     private PaymentStatus paymentStatus;
+
+    @Builder
+    public Payment(Long paymentId, Long reservationId, String seatNumber, LocalDateTime concertDateTime,
+                   BigDecimal paymentAmount, PaymentStatus paymentStatus){
+        this.id = paymentId;
+        this.reservationId = reservationId;
+        this.seatNumber = seatNumber;
+        this.concertDateTime = concertDateTime;
+        this.paymentAmount = paymentAmount;
+        this.paymentStatus = paymentStatus;
+    }
 }

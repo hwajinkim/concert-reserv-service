@@ -3,6 +3,7 @@ package kr.hhplus.be.server.domain.queue;
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,4 +29,13 @@ public class Queue extends BaseEntity {
     private LocalDateTime expiredAt;
 
     private LocalDateTime removedAt;
+
+    @Builder
+    public Queue(Long queueId, Long userId, QueueStatus queueStatus, LocalDateTime expiredAt, LocalDateTime removedAt){
+        this.id = queueId;
+        this.userId = userId;
+        this.queueStatus = queueStatus;
+        this.expiredAt = expiredAt;
+        this.removedAt = removedAt;
+    }
 }

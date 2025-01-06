@@ -3,6 +3,7 @@ package kr.hhplus.be.server.domain.reservation;
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,4 +34,15 @@ public class Reservation extends BaseEntity {
     private BigDecimal seatPrice;
 
     private LocalDateTime expiredAt;
+
+    @Builder
+    public Reservation(Long reservationId, Long userId, Long seatId, ReservationState reservationState,
+                       BigDecimal seatPrice, LocalDateTime expiredAt){
+        this.id = reservationId;
+        this.userId = userId;
+        this.seatId = seatId;
+        this.reservationState = reservationState;
+        this.seatPrice = seatPrice;
+        this.expiredAt = expiredAt;
+    }
 }

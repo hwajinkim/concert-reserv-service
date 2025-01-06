@@ -3,6 +3,7 @@ package kr.hhplus.be.server.domain.seat;
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -30,4 +31,14 @@ public class Seat extends BaseEntity {
 
     @Column(nullable = false)
     private BigDecimal seatPrice;
+
+    @Builder
+    public Seat(Long seatId, Long scheduleId, String seatNumber, SeatStatus seatStatus, BigDecimal seatPrice){
+        this.id = seatId;
+        this.scheduleId = scheduleId;
+        this.seatNumber = seatNumber;
+        this.seatStatus = seatStatus;
+        this.seatPrice = seatPrice;
+    }
+
 }

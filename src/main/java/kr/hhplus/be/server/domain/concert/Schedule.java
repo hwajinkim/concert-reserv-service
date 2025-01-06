@@ -3,6 +3,7 @@ package kr.hhplus.be.server.domain.concert;
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,12 +32,25 @@ public class Schedule extends BaseEntity {
     private LocalDateTime concertDate;
 
     @Column(nullable = false)
-    private LocalDateTime BookingStart;
+    private LocalDateTime bookingStart;
 
     @Column(nullable = false)
-    private LocalDateTime BookingEnd;
+    private LocalDateTime bookingEnd;
 
-    private int remainingTickets;
+    private int remainingTicket;
 
-    private int totalTickets;
+    private int totalTicket;
+
+    @Builder
+    public Schedule(Long scheduleId, Long concertId, BigDecimal price, LocalDateTime concertDate,
+                    LocalDateTime bookingStart, LocalDateTime bookingEnd, int remainingTicket, int totalTicket){
+        this.id = scheduleId;
+        this.concertId = concertId;
+        this.price = price;
+        this.concertDate = concertDate;
+        this.bookingStart = bookingStart;
+        this.bookingEnd = bookingEnd;
+        this.remainingTicket = remainingTicket;
+        this.totalTicket = totalTicket;
+    }
 }
