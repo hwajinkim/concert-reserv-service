@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.domain.reservation;
+package kr.hhplus.be.server.domain.concert;
 
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
@@ -7,30 +7,36 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "reservation")
-public class Reservation extends BaseEntity {
+@Table(name = "schedule")
+public class Schedule extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reservation_id", unique = true, nullable = false)
+    @Column(name = "schedule_id", unique = true, nullable = false)
     private Long id;
 
     @Column(nullable = false)
-    private Long userId;
+    private Long concertId;
 
     @Column(nullable = false)
-    private Long seatId;
+    private BigDecimal price;
 
     @Column(nullable = false)
-    private ReservationState reservationState;
+    private LocalDateTime concertDate;
 
     @Column(nullable = false)
-    private BigDecimal seatPrice;
+    private LocalDateTime BookingStart;
 
-    private LocalDateTime expiredAt;
+    @Column(nullable = false)
+    private LocalDateTime BookingEnd;
+
+    private int remainingTickets;
+
+    private int totalTickets;
 }

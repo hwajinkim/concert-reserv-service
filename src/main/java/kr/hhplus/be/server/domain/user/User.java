@@ -1,4 +1,27 @@
 package kr.hhplus.be.server.domain.user;
 
-public class User {
+import jakarta.persistence.*;
+import kr.hhplus.be.server.domain.common.BaseEntity;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@Table(name = "user")
+public class User extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", unique = true, nullable = false)
+    private Long id;
+
+    @Column(nullable = false)
+    private String userName;
+
+    private BigDecimal pointBalance;
 }
