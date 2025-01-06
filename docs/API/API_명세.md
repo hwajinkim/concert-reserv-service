@@ -1,6 +1,6 @@
 # API 명세
 
-## `POST` /api/v1/queue/token - 유저 대기열 토큰 발급 API
+## `POST` /api/v1/queue/{userId}/token - 유저 대기열 토큰 발급 API
 * 개요 : 헤더에 유저 인증 토큰이 없으면 유저마다 대기열 토큰을 생성하고 관련 정보를 저장한다.
   
 ### Request
@@ -9,6 +9,9 @@
 | Key | Value | Description |
 | --- | --- | --- |
 | `Authorization` | `Bearer <token>` | 유저 인증 토큰 |
+
+**PathVariable** <br>
++ UserId : 사용자 id
 
 ### Response
 **Success (201 Created)**
