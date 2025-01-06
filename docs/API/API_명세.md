@@ -1,6 +1,6 @@
 # API 명세
 
-## `POST` /api/v1/queue/{userId}/token - 유저 대기열 토큰 발급 API
+## `POST` /api/v1/queues - 유저 대기열 토큰 발급 API
 * 개요 : 헤더에 유저 인증 토큰이 없으면 유저마다 대기열 토큰을 생성하고 관련 정보를 저장한다.
   
 ### Request
@@ -10,8 +10,17 @@
 | --- | --- | --- |
 | `Authorization` | `Bearer <token>` | 유저 인증 토큰 |
 
-**PathVariable** <br>
-+ UserId : 사용자 id
+**Body**
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `userId` | `string` | `true` | 사용자 ID |
+
+```json
+{
+  "userId": "12345"
+}
+```
 
 ### Response
 **Success (201 Created)**
@@ -47,7 +56,7 @@
 }
 ```
 
-## `GET` /api/v1/concerts/schedules - 예약 가능 날짜 조회 API
+## `GET` /api/v1/concerts/{concertId}/schedules - 예약 가능 날짜 조회 API
 * 개요 : 예약 가능한 날짜 목록을 조회하여 반환한다.
 
 ### Request
@@ -55,6 +64,9 @@
 | Key | Value | Description |
 | --- | --- | --- |
 | `Authorization` | `Bearer <token>` | 유저 인증 토큰 |
+
+**PathVariable** <br>
+concertId : 콘서트 ID
 
 ### Response
 **Success (200 OK)**
@@ -115,7 +127,7 @@
 }
 ```
 
-## `GET` /api/v1/concerts/schedules/seats - 예약 가능 좌석 조회 API
+## `GET` /api/v1/concerts/{concertId}/schedules/{scheduleId}/seats - 예약 가능 좌석 조회 API
 * 개요 : 특정 날짜의 예약 가능한 좌석 정보를 조회하여 반환한다.
 ### Request
 **Headers**
@@ -123,15 +135,9 @@
 | --- | --- | --- |
 | `Authorization` | `Bearer <token>` | 유저 인증 토큰 |
 
-**Query Parameters**
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `scheduleId` | `string` | `true` | 특정 스케줄 ID |
-
-**Example Request**
-```
-GET /api/v1/concerts/schedules/seats?scheduleId=12345
-```
+**PathVariable** <br>
+concertId : 콘서트 ID <br>
+scheduleId : 스케줄 ID
 
 ### Response
 **Success (200 OK)**
@@ -183,7 +189,7 @@ GET /api/v1/concerts/schedules/seats?scheduleId=12345
 }
 ```
 
-## `POST` /api/v1/concerts/seats/reserve - 좌석 예약 API
+## `POST` /api/v1/reservations - 좌석 예약 API
 * 개요 : 스케줄 정보와 좌석 정보로 좌석 데이터를 조회한 후 좌석 예약을 처리한다.
 
 ### Request
@@ -249,7 +255,7 @@ GET /api/v1/concerts/schedules/seats?scheduleId=12345
 }
 ```
 
-## `GET` /api/v1/balance - 잔액 조회 API
+## `GET` /api/v1/users/{userId}/balance - 잔액 조회 API
 * 개요 : 유저 토큰을 통해 사용자 정보를 확인하고, 해당 사용자의 현재 잔액을 조회한다.
 
 ### Request
@@ -257,6 +263,9 @@ GET /api/v1/concerts/schedules/seats?scheduleId=12345
 | Key | Value | Description |
 | --- | --- | --- |
 | `Authorization` | `Bearer <token>` | 유저 인증 토큰 |
+
+**PathVariable** <br>
+userId : 사용자 ID
 
 ### Response
 **Success (200 OK)**
@@ -297,7 +306,7 @@ GET /api/v1/concerts/schedules/seats?scheduleId=12345
 }
 ```
 
-## `POST` /api/v1/balance/charge - 잔액 충전 API
+## `POST` /api/v1/users/charge - 잔액 충전 API
 * 개요 : 유저 토큰을 통해 사용자 정보를 확인하고, 요청된 금액만큼 잔액을 충전한다.
 
 ### Request
@@ -314,6 +323,7 @@ GET /api/v1/concerts/schedules/seats?scheduleId=12345
 **Example Request**
 ```json
 {
+  "userId": "12345"
   "amount": 50.00
 }
 ```
@@ -358,7 +368,7 @@ GET /api/v1/concerts/schedules/seats?scheduleId=12345
 }
 ```
 
-### `POST` /api/v1/reservations/pay - 결제 API
+### `POST` /api/v1/payments - 결제 API
 개요 : 특정 예약 정보를 조회한 후 결제를 처리하고 결제 내역을 생성한다.
 
 ### Request
