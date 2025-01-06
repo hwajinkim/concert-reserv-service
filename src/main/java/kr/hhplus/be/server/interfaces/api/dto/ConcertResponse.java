@@ -9,8 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ConsertResponse {
-    private Long consertId;
-    private String consertName;
+public class ConcertResponse {
+    private Long concertId;
+    private String concertName;
     private List<ScheduleResponse> scheduleResponses;
 }

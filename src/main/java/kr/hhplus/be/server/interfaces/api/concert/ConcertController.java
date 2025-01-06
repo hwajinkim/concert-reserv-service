@@ -1,12 +1,9 @@
-package kr.hhplus.be.server.interfaces.api.consert;
+package kr.hhplus.be.server.interfaces.api.concert;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
-import kr.hhplus.be.server.domain.payment.PaymentStatus;
-import kr.hhplus.be.server.domain.queue.QueueStatus;
-import kr.hhplus.be.server.domain.reservation.ReservationState;
 import kr.hhplus.be.server.interfaces.api.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-public class ConsertController {
+public class ConcertController {
 
     // 예약 가능 날짜 조회 API
     @Operation(summary = "예약 가능 날짜 조회")
     @GetMapping("/concerts/schedules")
-    public ApiResponse<ConsertResponse> getAvailableDates(){
+    public ApiResponse<ConcertResponse> getAvailableDates(){
         ScheduleResponse scheduleResponse = new ScheduleResponse(
                 12345L, LocalDateTime.of(2025, 1, 15, 19,0,0), LocalDateTime.of(2025,1,7,10,0,0),
                 LocalDateTime.of(2025,1,10,18,0,0), 50);
@@ -36,7 +33,7 @@ public class ConsertController {
         scheduleResponses.add(scheduleResponse);
         scheduleResponses.add(scheduleResponse_2);
 
-        ConsertResponse consertResponse = new ConsertResponse(12345L, "Awesome Concert", scheduleResponses);
+        ConcertResponse consertResponse = new ConcertResponse(12345L, "Awesome Concert", scheduleResponses);
 
         return ApiResponse.success(ResponseCode.AVAILABLE_RESERV_DATE_READ_SUCCESS.getMessage(), consertResponse);
     }
