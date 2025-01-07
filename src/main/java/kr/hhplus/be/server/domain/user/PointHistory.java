@@ -3,6 +3,7 @@ package kr.hhplus.be.server.domain.user;
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,4 +33,17 @@ public class PointHistory extends BaseEntity {
     private BigDecimal balanceBefore;
 
     private BigDecimal balanceAfter;
+
+    @Builder
+    public PointHistory(Long id, Long userId, Long paymentId
+            , TransMethod transMethod, BigDecimal transAmount
+            , BigDecimal balanceBefore, BigDecimal balanceAfter){
+        this.id = id;
+        this.userId = userId;
+        this.paymentId = paymentId;
+        this.transMethod = transMethod;
+        this.transAmount = transAmount;
+        this.balanceBefore = balanceBefore;
+        this.balanceAfter = balanceAfter;
+    }
 }

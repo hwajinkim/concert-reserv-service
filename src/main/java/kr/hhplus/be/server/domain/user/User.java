@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User extends BaseEntity {
 
     @Id
@@ -26,10 +26,29 @@ public class User extends BaseEntity {
 
     private BigDecimal pointBalance;
 
+    public static final BigDecimal MAX_BALANCE = BigDecimal.valueOf(1000000.00); // 최대 보유 포인트 1,000,000원
+
     @Builder
-    public User(Long userId, String userName, BigDecimal pointBalance){
-        this.id = userId;
+    public User(Long id, String userName, BigDecimal pointBalance){
+        this.id = id;
         this.userName = userName;
         this.pointBalance = pointBalance;
+    }
+
+    public User charge(BigDecimal amount) {
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("충전 금액은 0보다 커야 합니다.");
+        }
+        // 기존 잔액 + 추가 금액
+        BigDecimal newBalance = this.pointBalance.add(amount);
+        if(newBalance.compareTo(MAX_BALANCE) > 0){
+            throw new IllegalArgumentException("최대 잔액 100만 포인트를 초과 할 수 없습니다.");
+        }
+
+        return User.builder()
+                .id(this.id)
+                .userName(this.userName)
+                .pointBalance(newBalance)
+                .build();
     }
 }
