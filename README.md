@@ -13,7 +13,7 @@
 4. [시퀀스 다이어그램](https://github.com/hwajinkim/consert-reserv-service/blob/master/docs/sequence-diagram/sequenceDiagram.md)    
 5. [API 명세서](https://github.com/hwajinkim/consert-reserv-service/blob/master/docs/API/API_%EB%AA%85%EC%84%B8.md)
  + Swagger API
-![swagger_초안](https://github.com/user-attachments/assets/a602471e-2fa6-4845-814e-eddf241b43b2)
+![swagger_초안](https://github.com/user-attachments/assets/66324070-b637-40cd-934b-8db6993eb919)
 
 
 
