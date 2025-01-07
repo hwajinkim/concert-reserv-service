@@ -22,16 +22,14 @@ public class PointHistory extends BaseEntity {
     @Column(nullable = false)
     private Long userId;
 
-    @Column(nullable = false)
     private Long paymentId;
 
     @Column(nullable = false)
-    private BigDecimal rechargeAmount;
+    private TransMethod transMethod;
+
+    private BigDecimal transAmount;
 
     private BigDecimal balanceBefore;
 
     private BigDecimal balanceAfter;
-
-    @Column(nullable = false)
-    private RechargeMethod rechargeMethod;
 }
