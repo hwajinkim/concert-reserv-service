@@ -1,9 +1,4 @@
-package kr.hhplus.be.server.interfaces.api.dto;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+package kr.hhplus.be.server.interfaces.api.dto.user;
 
 import java.math.BigDecimal;
 
