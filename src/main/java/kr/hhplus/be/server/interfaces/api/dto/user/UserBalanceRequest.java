@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserBalanceRequest {
-    private double amount;
+import java.math.BigDecimal;
+
+public record UserBalanceRequest(
+    Long userId,
+    BigDecimal amount
+) {
 }
