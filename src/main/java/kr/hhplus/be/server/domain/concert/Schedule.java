@@ -2,6 +2,7 @@ package kr.hhplus.be.server.domain.concert;
 
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
+import kr.hhplus.be.server.domain.seat.Seat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,13 +26,10 @@ public class Schedule extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
-    private Long concertId;
-
-    @Column(nullable = false)
     private BigDecimal price;
 
     @Column(nullable = false)
-    private LocalDateTime concertDate;
+    private LocalDateTime concertDateTime;
 
     @Column(nullable = false)
     private LocalDateTime bookingStart;
@@ -41,16 +41,41 @@ public class Schedule extends BaseEntity {
 
     private int totalTicket;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "concert_id")
+    private Concert concert;
+
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
+    private List<Seat> seats;
+
     @Builder
-    public Schedule(Long scheduleId, Long concertId, BigDecimal price, LocalDateTime concertDate,
-                    LocalDateTime bookingStart, LocalDateTime bookingEnd, int remainingTicket, int totalTicket){
+    public Schedule(Long scheduleId, BigDecimal price, LocalDateTime concertDateTime,
+                    LocalDateTime bookingStart, LocalDateTime bookingEnd, int remainingTicket, int totalTicket,
+                    Concert concert, List<Seat> seats){
         this.id = scheduleId;
-        this.concertId = concertId;
         this.price = price;
-        this.concertDate = concertDate;
+        this.concertDateTime = concertDateTime;
         this.bookingStart = bookingStart;
         this.bookingEnd = bookingEnd;
         this.remainingTicket = remainingTicket;
         this.totalTicket = totalTicket;
+        this.concert = concert;
+        this.seats = seats;
+    }
+
+
+    public void addSeat(Seat seat) {
+        if(this.seats == null){
+            this.seats = new ArrayList<>();
+        }
+
+        Seat updatedSeat = Seat.builder()
+                .seatNumber(seat.getSeatNumber())
+                .seatStatus(seat.getSeatStatus())
+                .seatPrice(seat.getSeatPrice())
+                .schedule(this)
+                .build();
+
+        this.seats.add(updatedSeat);
     }
 }

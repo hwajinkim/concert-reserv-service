@@ -2,6 +2,7 @@ package kr.hhplus.be.server.domain.seat;
 
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
+import kr.hhplus.be.server.domain.concert.Schedule;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,24 +22,25 @@ public class Seat extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
-    private Long scheduleId;
+    private int seatNumber;
 
-    @Column(nullable = false)
-    private String seatNumber;
-
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SeatStatus seatStatus;
 
     @Column(nullable = false)
     private BigDecimal seatPrice;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id")
+    private Schedule schedule;
+
     @Builder
-    public Seat(Long seatId, Long scheduleId, String seatNumber, SeatStatus seatStatus, BigDecimal seatPrice){
+    public Seat(Long seatId, int seatNumber, SeatStatus seatStatus, BigDecimal seatPrice, Schedule schedule){
         this.id = seatId;
-        this.scheduleId = scheduleId;
         this.seatNumber = seatNumber;
         this.seatStatus = seatStatus;
         this.seatPrice = seatPrice;
+        this.schedule = schedule;
     }
-
 }
