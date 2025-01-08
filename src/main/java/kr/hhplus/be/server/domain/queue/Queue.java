@@ -6,7 +6,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.security.InvalidParameterException;
 import java.time.LocalDateTime;
 
 @Getter
@@ -31,11 +33,21 @@ public class Queue extends BaseEntity {
     private LocalDateTime removedAt;
 
     @Builder
-    public Queue(Long queueId, Long userId, QueueStatus queueStatus, LocalDateTime expiredAt, LocalDateTime removedAt){
-        this.id = queueId;
+    public Queue(Long id, Long userId, QueueStatus queueStatus,LocalDateTime expiredAt, LocalDateTime removedAt){
+        if(userId == null || userId <= 0){
+            throw new IllegalArgumentException("사용자 ID 유효하지 않음.");
+        }
+        this.id = id;
         this.userId = userId;
         this.queueStatus = queueStatus;
         this.expiredAt = expiredAt;
         this.removedAt = removedAt;
+    }
+
+    public Queue create(Long userId) {
+        return Queue.builder()
+                .userId(userId)
+                .queueStatus(QueueStatus.WAIT)
+                .build();
     }
 }
