@@ -2,13 +2,18 @@ package kr.hhplus.be.server.interfaces.api.concert;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kr.hhplus.be.server.application.concert.ConcertFacade;
+import kr.hhplus.be.server.application.dto.concert.ConcertResult;
+import kr.hhplus.be.server.application.dto.concert.ScheduleSeatResult;
 import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
-import kr.hhplus.be.server.interfaces.api.dto.*;
+import kr.hhplus.be.server.interfaces.api.dto.concert.ConcertResponse;
+import kr.hhplus.be.server.interfaces.api.dto.concert.ScheduleResponse;
+import kr.hhplus.be.server.interfaces.api.dto.concert.ScheduleSeatResponse;
+import kr.hhplus.be.server.interfaces.api.dto.seat.SeatResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,42 +23,41 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ConcertController {
 
+    private final ConcertFacade concertFacade;
     // 예약 가능 날짜 조회 API
     @Operation(summary = "예약 가능 날짜 조회")
-    @GetMapping("/concerts/schedules")
-    public ApiResponse<ConcertResponse> getAvailableDates(){
-        ScheduleResponse scheduleResponse = new ScheduleResponse(
-                12345L, LocalDateTime.of(2025, 1, 15, 19,0,0), LocalDateTime.of(2025,1,7,10,0,0),
-                LocalDateTime.of(2025,1,10,18,0,0), 50);
-        ScheduleResponse scheduleResponse_2 = new ScheduleResponse(
-                56789L, LocalDateTime.of(2025, 1, 20,15,0,0), LocalDateTime.of(2025,1,5,10,0,0),
-                LocalDateTime.of(2025,1,15,18,0,0), 30);
+    @GetMapping("/concerts/{concertId}/schedules")
+    public ApiResponse<ConcertResponse> getAvailableDates(@PathVariable("concertId") Long concertId){
 
-        List<ScheduleResponse> scheduleResponses = new ArrayList<>();
-        scheduleResponses.add(scheduleResponse);
-        scheduleResponses.add(scheduleResponse_2);
+        ConcertResult concertResult = concertFacade.findByConcertWithSchedule(concertId);
 
-        ConcertResponse consertResponse = new ConcertResponse(12345L, "Awesome Concert", scheduleResponses);
+        List<ScheduleResponse> scheduleResponses = concertResult.scheduleResults().stream()
+                .map(scheduleResult -> new ScheduleResponse(
+                        scheduleResult.scheduleId(),
+                        scheduleResult.concertDateTime(),
+                        scheduleResult.bookingStart(),
+                        scheduleResult.bookingEnd(),
+                        scheduleResult.remainingTicket()))
+                .toList();
 
-        return ApiResponse.success(ResponseCode.AVAILABLE_RESERV_DATE_READ_SUCCESS.getMessage(), consertResponse);
+        ConcertResponse concertResponse = new ConcertResponse(concertResult.concertId(), concertResult.concertName(), scheduleResponses);
+        return ApiResponse.success(ResponseCode.AVAILABLE_RESERV_DATE_READ_SUCCESS.getMessage(), concertResponse);
     }
 
     // 예약 가능 좌석 조회 API
     @Operation(summary = "예약 가능 좌석 조회")
-    @GetMapping("concerts/schedules/seats")
-    public ApiResponse<ScheduleSeatResponse> getAvailableSeats(@RequestParam(name="scheduleId") Long scheduleId){
+    @GetMapping("concerts/{concertId}/schedules/{scheduleId}/seats")
+    public ApiResponse<ScheduleSeatResponse> getAvailableSeats(@PathVariable("concertId") Long concertId
+                                                                , @PathVariable("scheduleId") Long scheduleId){
 
-        SeatResponse seatResponse = new SeatResponse(1L);
-        SeatResponse seatResponse_2 = new SeatResponse(2L);
-        SeatResponse seatResponse_3 = new SeatResponse(3L);
+        ScheduleSeatResult scheduleSeatResult = concertFacade.findByConcertWithScheduleWithSeat(concertId, scheduleId);
 
-        List<SeatResponse> availableSeats = new ArrayList<>();
-        availableSeats.add(seatResponse);
-        availableSeats.add(seatResponse_2);
-        availableSeats.add(seatResponse_3);
+        List<SeatResponse> seatResponses = scheduleSeatResult.availableSeats().stream()
+                .map(availableSeat -> new SeatResponse(
+                        availableSeat.seatId()))
+                .toList();
 
-        ScheduleSeatResponse scheduleSeatResponse = new ScheduleSeatResponse(12345L, availableSeats);
-
+        ScheduleSeatResponse scheduleSeatResponse = new ScheduleSeatResponse(scheduleSeatResult.scheduleId(), seatResponses);
         return ApiResponse.success(ResponseCode.AVAILABLE_RESERV_SEAT_READ_SUCCESS.getMessage(), scheduleSeatResponse);
     }
 }

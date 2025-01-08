@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.interfaces.api.dto;
+package kr.hhplus.be.server.interfaces.api.dto.concert;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,11 +6,9 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class ConcertResponse {
-    private Long concertId;
-    private String concertName;
-    private List<ScheduleResponse> scheduleResponses;
+public record ConcertResponse(
+        Long concertId,
+        String concertName,
+        List<ScheduleResponse> scheduleResponses
+) {
 }

@@ -1,12 +1,10 @@
-package kr.hhplus.be.server.interfaces.api.dto;
+package kr.hhplus.be.server.interfaces.api.dto.seat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class SeatResponse {
-    private Long seatId;
+public record SeatResponse(
+        Long seatId
+) {
 }
