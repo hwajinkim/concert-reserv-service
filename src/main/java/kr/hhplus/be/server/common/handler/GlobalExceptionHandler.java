@@ -1,5 +1,7 @@
 package kr.hhplus.be.server.common.handler;
 
+import kr.hhplus.be.server.common.exception.AvailableSeatNotFoundException;
+import kr.hhplus.be.server.common.exception.ConcertScheduleNotFoundException;
 import kr.hhplus.be.server.common.exception.UserNotFoundException;
 import kr.hhplus.be.server.common.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -12,7 +14,19 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex){
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), "사용자의 정보가 없습니다.");
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ConcertScheduleNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleConcertScheduleNotFoundException(ConcertScheduleNotFoundException ex){
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AvailableSeatNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleAvailableSeatNotFoundException(AvailableSeatNotFoundException ex){
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
