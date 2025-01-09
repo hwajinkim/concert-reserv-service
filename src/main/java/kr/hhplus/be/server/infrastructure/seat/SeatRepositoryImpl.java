@@ -27,4 +27,9 @@ public class SeatRepositoryImpl implements SeatRepository {
     public Seat save(Seat updatedSeat) {
         return seatJpaRepository.save(updatedSeat);
     }
+
+    @Override
+    public Optional<Object> findScheduleIdBySeatId(Long seatId) {
+        return seatJpaRepository.findScheduleIdBySeatId(seatId);
+    }
 }

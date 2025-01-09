@@ -113,7 +113,7 @@ public class ConcertServiceTest {
     }
 
     @Test
-    void 스케줄ID로_조회_시_정보_있으면_잔여_티켓수_1_감소_후_저장(){
+    void 스케줄ID로_조회_시_정보_있으면_잔여_티켓수_1_증가_후_저장(){
         //given
         Long scheduleId = 1L;
         int increseOrDecreseNumber = -1;
@@ -141,6 +141,37 @@ public class ConcertServiceTest {
         Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(scheduleId, increseOrDecreseNumber);
         //then
         assertEquals(29, updatedSchedule.getRemainingTicket());
+        verify(scheduleRepository, times(1)).save(any(Schedule.class));
+    }
+    @Test
+    void 결제_시_임시_예약_만료됐을_때_스케줄ID로_조회_시_정보_있으면_잔여_티켓수_1_증가_후_저장(){
+        //given
+        Long scheduleId = 1L;
+        int increseOrDecreseNumber = 1;
+
+        Schedule mockSchedule = Schedule.builder()
+                .scheduleId(67891L)
+                .concertDateTime(LocalDateTime.of(2025,1,20,22,0,0))
+                .bookingStart(LocalDateTime.of(2025,1,5,10,0,0))
+                .bookingEnd(LocalDateTime.of(2025,1,15,18,0,0))
+                .remainingTicket(30)
+                .build();
+
+        Schedule updatedMockSchedule = Schedule.builder()
+                .scheduleId(67891L)
+                .concertDateTime(LocalDateTime.of(2025,1,20,22,0,0))
+                .bookingStart(LocalDateTime.of(2025,1,5,10,0,0))
+                .bookingEnd(LocalDateTime.of(2025,1,15,18,0,0))
+                .remainingTicket(mockSchedule.getRemainingTicket() + increseOrDecreseNumber)
+                .build();
+
+
+        when(scheduleRepository.findById(scheduleId)).thenReturn(Optional.of(mockSchedule));
+        when(scheduleRepository.save(any(Schedule.class))).thenReturn(updatedMockSchedule);
+        //when
+        Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(scheduleId, increseOrDecreseNumber);
+        //then
+        assertEquals(31, updatedSchedule.getRemainingTicket());
         verify(scheduleRepository, times(1)).save(any(Schedule.class));
     }
 }

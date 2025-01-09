@@ -49,4 +49,9 @@ public class ConcertService {
         Schedule updatedSchedule = schedule.update(schedule, increaseOrDecreaseNumber);
         return scheduleRepository.save(updatedSchedule);
     }
+
+    public Schedule findById(Long scheduleId) {
+        return scheduleRepository.findById(scheduleId)
+                .orElseThrow(()-> new ScheduleNotFoundException("스케줄 정보를 찾을 수 없습니다."));
+    }
 }

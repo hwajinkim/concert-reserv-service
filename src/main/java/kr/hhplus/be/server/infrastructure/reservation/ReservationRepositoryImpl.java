@@ -5,6 +5,8 @@ import kr.hhplus.be.server.domain.reservation.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class ReservationRepositoryImpl implements ReservationRepository {
@@ -13,5 +15,10 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public Reservation save(Reservation createdReservation) {
         return reservationJpaRepository.save(createdReservation);
+    }
+
+    @Override
+    public Optional<Reservation> findByReservationIdAndSeatId(Long reservationId, Long seatId) {
+        return reservationJpaRepository.findByIdAndSeatId(reservationId, seatId);
     }
 }

@@ -44,4 +44,23 @@ public class UserService {
         PointHistory pointHistorySave = pointHistoryRepository.save(pointHistory);
         return userSave;
     }
+
+    @Transactional
+    public User use(Long userId, BigDecimal amount){
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundException("사용자의 정보가 없습니다."));
+        User userUpdate = user.use(user.getPointBalance(), amount);
+        User userSave = userRepository.save(userUpdate);
+
+        PointHistory pointHistory = PointHistory.builder()
+                .userId(userId)
+                .transMethod(TransMethod.USE)
+                .transAmount(amount)
+                .balanceBefore(user.getPointBalance())
+                .balanceAfter(userUpdate.getPointBalance())
+                .build();
+
+        PointHistory pointHistorySave = pointHistoryRepository.save(pointHistory);
+        return userSave;
+    }
 }
