@@ -51,4 +51,14 @@ public class Queue extends BaseEntity {
                 .queueStatus(QueueStatus.WAIT)
                 .build();
     }
+
+    public Queue update(Queue findQueue) {
+        return Queue.builder()
+                .id(findQueue.getId())
+                .userId(findQueue.getUserId())
+                .queueStatus(QueueStatus.EXPIRE)
+                .expiredAt(LocalDateTime.now())
+                .removedAt(LocalDateTime.now())
+                .build();
+    }
 }

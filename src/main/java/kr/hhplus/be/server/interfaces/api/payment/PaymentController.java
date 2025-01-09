@@ -25,9 +25,12 @@ public class PaymentController {
     // 결제 API
     @Operation(summary = "결제 신청")
     @PostMapping("/payments")
-    public ApiResponse<PaymentResponse> createPayment(@RequestHeader(value = "Queue-Token", required = false) Long tokenUserId, @RequestBody PaymentRequest paymentRequest){
+    public ApiResponse<PaymentResponse> createPayment(
+            @RequestHeader(value = "Queue-Token", required = false) Long tokenUserId,
+            @RequestHeader(value = "Queue-Token-Queue-Id", required = false) Long tokenQueueId,
+            @RequestBody PaymentRequest paymentRequest){
 
-        PaymentRequest updatedRequest = paymentRequest.withUserId(tokenUserId, paymentRequest);
+        PaymentRequest updatedRequest = paymentRequest.withUserIdAndQueueId(tokenUserId, tokenQueueId, paymentRequest);
         PaymentParam paymentParam = PaymentParam.from(updatedRequest);
 
         return ApiResponse.success(ResponseCode.PAYMENT_CREATED_SUCCESS.getMessage(), PaymentResponse.from(paymentFacade.createPayment(paymentParam)));

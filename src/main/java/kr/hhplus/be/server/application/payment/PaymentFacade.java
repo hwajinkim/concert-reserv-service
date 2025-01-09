@@ -10,6 +10,8 @@ import kr.hhplus.be.server.domain.concert.ConcertService;
 import kr.hhplus.be.server.domain.concert.Schedule;
 import kr.hhplus.be.server.domain.payment.Payment;
 import kr.hhplus.be.server.domain.payment.PaymentService;
+import kr.hhplus.be.server.domain.queue.Queue;
+import kr.hhplus.be.server.domain.queue.QueueService;
 import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationService;
 import kr.hhplus.be.server.domain.reservation.ReservationState;
@@ -33,6 +35,7 @@ public class PaymentFacade {
     private final ConcertService concertService;
     private final UserService userService;
     private final PaymentService paymentService;
+    private final QueueService queueService;
 
     public PaymentResult createPayment(PaymentParam paymentParam) {
 
@@ -74,6 +77,9 @@ public class PaymentFacade {
                 //2-2-5. *결제* 생성
                 Schedule findSchedule = concertService.findById(scheduleId);
                 savedPayment = paymentService.createPayment(findSchedule, findSeat, findReservation);
+
+                //2-2-6. *유저 대기열 토큰* 제거
+                Queue updatedQueue = queueService.updateQueue(paymentParam.queueId());
             }
         }else{
             throw new MissingExpiryTimeException("예약에 만료 시간이 설정되지 않았습니다.");

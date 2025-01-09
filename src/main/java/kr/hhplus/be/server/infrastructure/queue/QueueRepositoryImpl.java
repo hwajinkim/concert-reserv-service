@@ -5,6 +5,8 @@ import kr.hhplus.be.server.domain.queue.QueueRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class QueueRepositoryImpl implements QueueRepository {
@@ -18,5 +20,10 @@ public class QueueRepositoryImpl implements QueueRepository {
     @Override
     public Queue findByUserId(Long userId) {
         return queueJpaRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Optional<Queue> findById(Long queueId) {
+        return queueJpaRepository.findById(queueId);
     }
 }
