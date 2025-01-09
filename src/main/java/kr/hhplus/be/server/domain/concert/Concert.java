@@ -22,7 +22,7 @@ public class Concert extends BaseEntity {
     @Column(nullable = false)
     private String concertName;
 
-    @OneToMany(mappedBy = "concert", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "concert", cascade = CascadeType.ALL)
     private List<Schedule> schedules;
 
 

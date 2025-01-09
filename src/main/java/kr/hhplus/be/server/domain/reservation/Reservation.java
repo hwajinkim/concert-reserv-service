@@ -59,4 +59,16 @@ public class Reservation extends BaseEntity {
                 .expiredAt(expiryTime)
                 .build();
     }
+
+    public Reservation update(Seat seat, Long reservationId, Long userId, ReservationState reservationState) {
+
+        return Reservation.builder()
+                .reservationId(reservationId)
+                .userId(userId)
+                .seatId(seat.getId())
+                .reservationState(reservationState)
+                .seatPrice(seat.getSeatPrice())
+                .expiredAt(null) // 예약 생성 시에만 임시배정 목적으로 현재시간 + 5분으로 들어가고, 상태 변경이 일어나면(임시 배정 시간 만료, 결제완료)시에는 null로 들어감.
+                .build();
+    }
 }

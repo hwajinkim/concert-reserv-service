@@ -1,5 +1,6 @@
 package kr.hhplus.be.server.unit_test.domain.model;
 
+import kr.hhplus.be.server.common.exception.LackBalanceException;
 import kr.hhplus.be.server.domain.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,5 +53,17 @@ public class UserTest {
 
         // then
         assertThat(userCharge.getPointBalance()).isEqualTo(balanceBefore.add(amount));
+    }
+
+    @Test
+    void 결제_시_기존_잔액보다_사용_금액이_크면_LackBalanceException_발생(){
+        //given
+        BigDecimal pointBalance = BigDecimal.valueOf(100000.00);
+        BigDecimal useAmount = BigDecimal.valueOf(200000.00);
+
+        //when & then
+        assertThatThrownBy(()->user.use(pointBalance, useAmount))
+                .isInstanceOf(LackBalanceException.class)
+                .hasMessage("잔액이 부족합니다.");
     }
 }
