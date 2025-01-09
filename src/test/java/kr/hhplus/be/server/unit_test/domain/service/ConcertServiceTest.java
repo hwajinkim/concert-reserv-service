@@ -131,7 +131,7 @@ public class ConcertServiceTest {
                 .concertDateTime(LocalDateTime.of(2025,1,20,22,0,0))
                 .bookingStart(LocalDateTime.of(2025,1,5,10,0,0))
                 .bookingEnd(LocalDateTime.of(2025,1,15,18,0,0))
-                .remainingTicket(mockSchedule.getRemainingTicket()-1)
+                .remainingTicket(mockSchedule.getRemainingTicket() + increseOrDecreseNumber)
                 .build();
 
 
