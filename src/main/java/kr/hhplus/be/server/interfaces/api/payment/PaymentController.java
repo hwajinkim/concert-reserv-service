@@ -2,11 +2,14 @@ package kr.hhplus.be.server.interfaces.api.payment;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kr.hhplus.be.server.application.dto.payment.PaymentParam;
+import kr.hhplus.be.server.application.dto.payment.PaymentResult;
+import kr.hhplus.be.server.application.payment.PaymentFacade;
 import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
 import kr.hhplus.be.server.domain.payment.PaymentStatus;
-import kr.hhplus.be.server.interfaces.api.dto.PaymentRequeset;
-import kr.hhplus.be.server.interfaces.api.dto.PaymentResponse;
+import kr.hhplus.be.server.interfaces.api.dto.payment.PaymentRequest;
+import kr.hhplus.be.server.interfaces.api.dto.payment.PaymentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +24,14 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class PaymentController {
 
+    private final PaymentFacade paymentFacade;
     // 결제 API
     @Operation(summary = "결제 신청")
-    @PostMapping("/reservations/pay")
-    public ApiResponse<PaymentResponse> createPayment(@RequestBody PaymentRequeset paymentRequeset){
-        PaymentResponse paymentResponse = new PaymentResponse(12345L, 12345L, 10L,
-                "Awesome Concert", LocalDateTime.of(2025, 1, 1, 19,0,0),
-                100.00, PaymentStatus.COMPLETED, LocalDateTime.of(2025, 1, 1, 12,0,0));
-        return ApiResponse.success(ResponseCode.PAYMENT_CREATED_SUCCESS.getMessage(), paymentResponse);
+    @PostMapping("/payments")
+    public ApiResponse<PaymentResponse> createPayment(@RequestBody PaymentRequest paymentRequest){
+
+        PaymentParam paymentParam = PaymentParam.from(paymentRequest);
+
+        return ApiResponse.success(ResponseCode.PAYMENT_CREATED_SUCCESS.getMessage(), PaymentResponse.from(paymentFacade.createPayment(paymentParam)));
     }
 }

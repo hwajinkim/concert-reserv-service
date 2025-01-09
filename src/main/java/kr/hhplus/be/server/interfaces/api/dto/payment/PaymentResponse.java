@@ -1,22 +1,23 @@
-package kr.hhplus.be.server.interfaces.api.dto;
+package kr.hhplus.be.server.interfaces.api.dto.payment;
 
+import kr.hhplus.be.server.application.dto.payment.PaymentResult;
 import kr.hhplus.be.server.domain.payment.PaymentStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class PaymentResponse {
-    private Long paymentId;
-    private Long reservationId;
-    private Long seatId;
-    private String concertName;
-    private LocalDateTime concertDateTime;
-    private double amount;
-    private PaymentStatus paymentStatus;
-    private LocalDateTime paymentTime;
+public record PaymentResponse(
+        Long paymentId,
+        Long reservationId,
+        Long seatId,
+        LocalDateTime concertDateTime,
+        BigDecimal paymentAmount,
+        PaymentStatus paymentStatus,
+        LocalDateTime paymentTime
+) {
+
+    public static PaymentResponse from(PaymentResult paymentResult) {
+        return new PaymentResponse(paymentResult.paymentId(), paymentResult.reservationId(), paymentResult.seatId(),
+                paymentResult.concertDateTime(), paymentResult.paymentAmount(), paymentResult.paymentStatus(), paymentResult.paymentTime());
+    }
 }
