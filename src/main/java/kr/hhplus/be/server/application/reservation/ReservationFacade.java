@@ -26,7 +26,7 @@ public class ReservationFacade {
         Seat updatedSeat = seatService.updateSeatStatus(reservationParam.seatId(), SeatStatus.OCCUPIED);
 
         //2. 스케줄(schedule) 잔여 티켓 수 업데이트(-1)
-        Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(reservationParam.scheduleId());
+        Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(reservationParam.scheduleId(), -1);
 
         //3. 예약(reservation) 신청
         Reservation savedReservation = reservationService.creatSeatReservation(updatedSeat, reservationParam.userId());

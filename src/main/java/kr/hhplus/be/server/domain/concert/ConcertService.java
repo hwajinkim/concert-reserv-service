@@ -42,11 +42,11 @@ public class ConcertService {
     }
 
     @Transactional
-    public Schedule updateScheduleRemainingTicket(Long scheduleId) {
+    public Schedule updateScheduleRemainingTicket(Long scheduleId, int increaseOrDecreaseNumber) {
         Schedule schedule = scheduleRepository.findById(scheduleId)
                 .orElseThrow(()-> new ScheduleNotFoundException("스케줄 정보를 찾을 수 없습니다."));
 
-        Schedule updatedSchedule = schedule.update(schedule);
+        Schedule updatedSchedule = schedule.update(schedule, increaseOrDecreaseNumber);
         return scheduleRepository.save(updatedSchedule);
     }
 }

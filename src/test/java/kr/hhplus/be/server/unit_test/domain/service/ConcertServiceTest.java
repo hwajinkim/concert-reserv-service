@@ -102,11 +102,12 @@ public class ConcertServiceTest {
     void 스케줄ID로_조회_시_스케줄_정보_없으면_ScheduleNotFoundException_발생(){
         //given
         Long scheduleId = 999L;
+        int increseOrDecreseNumber = -1;
 
         when(scheduleRepository.findById(scheduleId)).thenThrow(new ScheduleNotFoundException("스케줄 정보를 찾을 수 없습니다."));
         //when
         Exception exception = assertThrows(ScheduleNotFoundException.class,
-                ()-> concertService.updateScheduleRemainingTicket(scheduleId));
+                ()-> concertService.updateScheduleRemainingTicket(scheduleId, increseOrDecreseNumber));
         //then
         assertEquals("스케줄 정보를 찾을 수 없습니다.", exception.getMessage());
     }
@@ -115,6 +116,7 @@ public class ConcertServiceTest {
     void 스케줄ID로_조회_시_정보_있으면_잔여_티켓수_1_감소_후_저장(){
         //given
         Long scheduleId = 1L;
+        int increseOrDecreseNumber = -1;
 
         Schedule mockSchedule = Schedule.builder()
                 .scheduleId(67891L)
@@ -136,7 +138,7 @@ public class ConcertServiceTest {
         when(scheduleRepository.findById(scheduleId)).thenReturn(Optional.of(mockSchedule));
         when(scheduleRepository.save(any(Schedule.class))).thenReturn(updatedMockSchedule);
         //when
-        Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(scheduleId);
+        Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(scheduleId, increseOrDecreseNumber);
         //then
         assertEquals(29, updatedSchedule.getRemainingTicket());
         verify(scheduleRepository, times(1)).save(any(Schedule.class));
