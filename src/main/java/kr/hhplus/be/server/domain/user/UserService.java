@@ -30,6 +30,8 @@ public class UserService {
     public User charge(Long userId, BigDecimal amount) {
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new UserNotFoundException("사용자의 정보가 없습니다."));
+        BigDecimal balanceBefore = user.getPointBalance();
+
         User userUpdate = user.charge(amount);
         User userSave = userRepository.save(userUpdate);
 
@@ -37,7 +39,7 @@ public class UserService {
                 .userId(userId)
                 .transMethod(TransMethod.CHARGE)
                 .transAmount(amount)
-                .balanceBefore(user.getPointBalance())
+                .balanceBefore(balanceBefore)
                 .balanceAfter(userUpdate.getPointBalance())
                 .build();
 
@@ -49,6 +51,8 @@ public class UserService {
     public User use(Long userId, BigDecimal amount){
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new UserNotFoundException("사용자의 정보가 없습니다."));
+        BigDecimal balanceBefore = user.getPointBalance();
+
         User userUpdate = user.use(user.getPointBalance(), amount);
         User userSave = userRepository.save(userUpdate);
 
@@ -56,7 +60,7 @@ public class UserService {
                 .userId(userId)
                 .transMethod(TransMethod.USE)
                 .transAmount(amount)
-                .balanceBefore(user.getPointBalance())
+                .balanceBefore(balanceBefore)
                 .balanceAfter(userUpdate.getPointBalance())
                 .build();
 

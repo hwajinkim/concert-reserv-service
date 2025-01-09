@@ -31,13 +31,12 @@ public class Payment extends BaseEntity {
 
     private int seatNumber;
 
-    //private String concertName;
-
     private LocalDateTime concertDateTime;
 
     @Column(nullable = false)
     private BigDecimal paymentAmount;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PaymentStatus paymentStatus;
 

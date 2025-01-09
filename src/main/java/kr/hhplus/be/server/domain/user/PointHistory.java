@@ -25,6 +25,7 @@ public class PointHistory extends BaseEntity {
 
     private Long paymentId;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TransMethod transMethod;
 

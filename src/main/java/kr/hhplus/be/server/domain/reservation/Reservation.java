@@ -28,6 +28,7 @@ public class Reservation extends BaseEntity {
     @Column(nullable = false)
     private Long seatId;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ReservationState reservationState;
 

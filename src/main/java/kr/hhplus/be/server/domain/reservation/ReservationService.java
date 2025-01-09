@@ -30,11 +30,6 @@ public class ReservationService {
     @Transactional
     public Reservation updateSeatReservation(Seat seat, Long reservationId, Long userId, ReservationState reservationState) {
         Reservation updatedReservation = new Reservation().update(seat,reservationId, userId, reservationState);
-        log.info("ReservationService: getUserId:"+updatedReservation.getUserId());
-        log.info("ReservationService: getSeatId:"+updatedReservation.getSeatId());
-        log.info("ReservationService: getReservationState:"+updatedReservation.getReservationState());
-        log.info("ReservationService: getSeatPrice:"+updatedReservation.getSeatPrice());
-        log.info("ReservationService: getExpiredAt:"+updatedReservation.getExpiredAt());
         return reservationRepository.save(updatedReservation);
     }
 }

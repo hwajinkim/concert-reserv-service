@@ -25,6 +25,7 @@ public class Queue extends BaseEntity {
     @Column(nullable = false)
     private Long userId;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private QueueStatus queueStatus;
 
