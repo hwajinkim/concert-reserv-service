@@ -1,6 +1,7 @@
 package kr.hhplus.be.server.integration_test.inter;
 
 import kr.hhplus.be.server.domain.user.User;
+import kr.hhplus.be.server.integration_test.inter.set_up.UserSetUp;
 import kr.hhplus.be.server.interfaces.api.dto.queue.QueueTokenRequest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;

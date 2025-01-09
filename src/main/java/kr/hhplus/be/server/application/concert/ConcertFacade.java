@@ -6,7 +6,6 @@ import kr.hhplus.be.server.application.dto.concert.ScheduleSeatResult;
 import kr.hhplus.be.server.application.dto.seat.SeatResult;
 import kr.hhplus.be.server.domain.concert.Concert;
 import kr.hhplus.be.server.domain.concert.ConcertService;
-import kr.hhplus.be.server.domain.dto.concert.ConcertDomainResult;
 import kr.hhplus.be.server.domain.seat.Seat;
 import kr.hhplus.be.server.domain.seat.SeatService;
 import lombok.RequiredArgsConstructor;

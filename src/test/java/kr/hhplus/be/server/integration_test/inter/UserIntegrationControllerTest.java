@@ -1,18 +1,14 @@
 package kr.hhplus.be.server.integration_test.inter;
 
 import kr.hhplus.be.server.domain.user.User;
+import kr.hhplus.be.server.integration_test.inter.set_up.UserSetUp;
 import kr.hhplus.be.server.interfaces.api.dto.user.UserBalanceRequest;
-import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
