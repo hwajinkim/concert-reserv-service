@@ -14,4 +14,9 @@ public class QueueRepositoryImpl implements QueueRepository {
     public Queue save(Queue queue) {
         return queueJpaRepository.save(queue);
     }
+
+    @Override
+    public Queue findByUserId(Long userId) {
+        return queueJpaRepository.findByUserId(userId);
+    }
 }

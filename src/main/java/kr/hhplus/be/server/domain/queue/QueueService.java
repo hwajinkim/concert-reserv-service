@@ -20,4 +20,8 @@ public class QueueService {
         Queue savedQueue = queueRepository.save(createdQueue);
         return savedQueue;
     }
+
+    public Queue findByUserId(Long userId) {
+        return queueRepository.findByUserId(userId);
+    }
 }

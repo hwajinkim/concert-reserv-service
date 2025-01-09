@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QueueJpaRepository extends JpaRepository<Queue,Long> {
+    Queue findByUserId(Long userId);
 }

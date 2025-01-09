@@ -11,10 +11,7 @@ import kr.hhplus.be.server.domain.payment.PaymentStatus;
 import kr.hhplus.be.server.interfaces.api.dto.payment.PaymentRequest;
 import kr.hhplus.be.server.interfaces.api.dto.payment.PaymentResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -28,9 +25,10 @@ public class PaymentController {
     // 결제 API
     @Operation(summary = "결제 신청")
     @PostMapping("/payments")
-    public ApiResponse<PaymentResponse> createPayment(@RequestBody PaymentRequest paymentRequest){
+    public ApiResponse<PaymentResponse> createPayment(@RequestHeader(value = "Queue-Token", required = false) Long tokenUserId, @RequestBody PaymentRequest paymentRequest){
 
-        PaymentParam paymentParam = PaymentParam.from(paymentRequest);
+        PaymentRequest updatedRequest = paymentRequest.withUserId(tokenUserId, paymentRequest);
+        PaymentParam paymentParam = PaymentParam.from(updatedRequest);
 
         return ApiResponse.success(ResponseCode.PAYMENT_CREATED_SUCCESS.getMessage(), PaymentResponse.from(paymentFacade.createPayment(paymentParam)));
     }

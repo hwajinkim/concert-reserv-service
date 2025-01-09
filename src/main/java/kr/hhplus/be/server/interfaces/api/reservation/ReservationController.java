@@ -11,10 +11,7 @@ import kr.hhplus.be.server.domain.reservation.ReservationState;
 import kr.hhplus.be.server.interfaces.api.dto.reservation.ReservationRequest;
 import kr.hhplus.be.server.interfaces.api.dto.reservation.ReservationResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 @Tag(name = "좌석 예약 API", description = "좌석에 대해 예약 신청하는 api 입니다.")
@@ -27,9 +24,10 @@ public class ReservationController {
     // 예약 API
     @Operation(summary = "좌석 예약 신청")
     @PostMapping("/reservations")
-    public ApiResponse<ReservationResponse> createSeatReservation(@RequestBody ReservationRequest reservationRequest){
+    public ApiResponse<ReservationResponse> createSeatReservation(@RequestHeader(value = "Queue-Token", required = false) Long tokenUserId, @RequestBody ReservationRequest reservationRequest){
 
-        ReservationParam reservationParam = ReservationParam.from(reservationRequest);
+        ReservationRequest updatedRequest = ReservationRequest.withUserId(tokenUserId, reservationRequest);
+        ReservationParam reservationParam = ReservationParam.from(updatedRequest);
 
         return ApiResponse.success(ResponseCode.SEAT_RESERV_CREATE_SUCCESS.getMessage(), ReservationResponse.from(reservationFacade.createSeatReservation(reservationParam)));
     }
