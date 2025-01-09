@@ -3,15 +3,14 @@ package kr.hhplus.be.server.integration_test.inter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import kr.hhplus.be.server.domain.concert.Concert;
 import kr.hhplus.be.server.domain.concert.Schedule;
+import kr.hhplus.be.server.domain.queue.Queue;
+import kr.hhplus.be.server.domain.queue.QueueStatus;
 import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationState;
 import kr.hhplus.be.server.domain.seat.Seat;
 import kr.hhplus.be.server.domain.seat.SeatStatus;
 import kr.hhplus.be.server.domain.user.User;
-import kr.hhplus.be.server.integration_test.inter.set_up.ConcertSetUp;
-import kr.hhplus.be.server.integration_test.inter.set_up.ReservationSetUp;
-import kr.hhplus.be.server.integration_test.inter.set_up.ScheduleSetUp;
-import kr.hhplus.be.server.integration_test.inter.set_up.UserSetUp;
+import kr.hhplus.be.server.integration_test.inter.set_up.*;
 import kr.hhplus.be.server.interfaces.api.dto.payment.PaymentRequest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +36,8 @@ public class PaymentIntegrationControllerTest extends BaseIntegrationTest{
     @Autowired
     private WebApplicationContext context;
 
+    @Autowired
+    private QueueSetUp queueSetUp;
     @Autowired
     private UserSetUp userSetUp;
     @Autowired
@@ -92,7 +93,10 @@ public class PaymentIntegrationControllerTest extends BaseIntegrationTest{
         // 사용자 저장
         User user = userSetUp.saveUser("김화진", BigDecimal.valueOf(50000.00));
 
-        // 콘서트 & 스케줄 저장
+        // 유저 대기열 토큰 저장
+        Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT);
+
+                // 콘서트 & 스케줄 저장
         Concert concert = concertSetUp.saveConcert("Awesome Concert", scheduleList);
 
         // 스케줄 & 좌석 저장
@@ -112,7 +116,7 @@ public class PaymentIntegrationControllerTest extends BaseIntegrationTest{
                 LocalDateTime.now().plusMinutes(5)
         );
 
-        PaymentRequest paymentRequest = new PaymentRequest(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId());
+        PaymentRequest paymentRequest = new PaymentRequest(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queue.getId());
 
         //when
         ResultActions resultActions = mvc.perform(post("/api/v1/payments")

@@ -47,6 +47,7 @@ public class PaymentFacadeTest {
         Long reservationId = 1L;
         Long seatId = 1L;
         Long userId = 12345L;
+        Long queueId = 1L;
 
         LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(5);
 
@@ -58,7 +59,7 @@ public class PaymentFacadeTest {
                 .expiredAt(null)
                 .build();
 
-        PaymentParam paymentParam = new PaymentParam(reservationId, seatId, userId);
+        PaymentParam paymentParam = new PaymentParam(reservationId, seatId, userId, queueId);
         when(reservationService.findByReservationIdAndSeatId(paymentParam.reservationId(), paymentParam.seatId()))
                 .thenReturn(mockReservation);
 
@@ -76,9 +77,10 @@ public class PaymentFacadeTest {
         Long reservationId = 1L;
         Long seatId = 1L;
         Long userId = 2L;
+        Long queueId = 1L;
         ReservationState reservationState = ReservationState.CANCELLED;
 
-        PaymentParam paymentParam = new PaymentParam(reservationId, seatId, userId);
+        PaymentParam paymentParam = new PaymentParam(reservationId, seatId, userId, queueId);
 
         Reservation expiredReservation = Reservation.builder()
                 .expiredAt(LocalDateTime.now().minusMinutes(5))
