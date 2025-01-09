@@ -32,7 +32,7 @@ public class Seat extends BaseEntity {
     private BigDecimal seatPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "schedule_id")
+    @JoinColumn(name = "schedule_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Schedule schedule;
 
     @Builder

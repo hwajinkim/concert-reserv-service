@@ -42,7 +42,7 @@ public class Schedule extends BaseEntity {
     private int totalTicket;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "concert_id")
+    @JoinColumn(name = "concert_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Concert concert;
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
