@@ -44,11 +44,11 @@ public class Seat extends BaseEntity {
         this.schedule = schedule;
     }
 
-    public Seat update(Seat seat) {
+    public Seat update(Seat seat, SeatStatus seatStatus) {
         return Seat.builder()
                 .seatId(seat.getId())
                 .seatNumber(seat.getSeatNumber())
-                .seatStatus(SeatStatus.OCCUPIED)
+                .seatStatus(seatStatus)
                 .seatPrice(seat.getSeatPrice())
                 .schedule(seat.getSchedule())
                 .build();

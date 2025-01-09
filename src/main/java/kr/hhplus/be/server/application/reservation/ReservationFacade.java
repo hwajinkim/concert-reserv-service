@@ -9,6 +9,7 @@ import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationService;
 import kr.hhplus.be.server.domain.seat.Seat;
 import kr.hhplus.be.server.domain.seat.SeatService;
+import kr.hhplus.be.server.domain.seat.SeatStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class ReservationFacade {
     public ReservationResult createSeatReservation(ReservationParam reservationParam) {
 
         //1. 좌석(seat) 상태 업데이트 (점유)
-        Seat updatedSeat = seatService.updateSeatStatus(reservationParam.seatId());
+        Seat updatedSeat = seatService.updateSeatStatus(reservationParam.seatId(), SeatStatus.OCCUPIED);
 
         //2. 스케줄(schedule) 잔여 티켓 수 업데이트(-1)
         Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(reservationParam.scheduleId());

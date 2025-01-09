@@ -76,7 +76,7 @@ public class SeatServiceTest {
         when(seatRepository.findById(seatId)).thenThrow(new SeatNotFoundException("좌석을 찾을 수 없습니다."));
         //when & then
         Exception exception = assertThrows(SeatNotFoundException.class,
-                ()-> seatService.updateSeatStatus(seatId));
+                ()-> seatService.updateSeatStatus(seatId, SeatStatus.OCCUPIED));
 
         assertEquals("좌석을 찾을 수 없습니다.", exception.getMessage());
     }
@@ -105,7 +105,7 @@ public class SeatServiceTest {
         when(seatRepository.findById(seatId)).thenReturn(Optional.of(mockSeat));
         when(seatRepository.save(any(Seat.class))).thenReturn(updatedMockSeat);
         //when
-        Seat updatedSeat = seatService.updateSeatStatus(seatId);
+        Seat updatedSeat = seatService.updateSeatStatus(seatId, SeatStatus.OCCUPIED);
         //then
         assertEquals(SeatStatus.OCCUPIED, updatedSeat.getSeatStatus());
         verify(seatRepository).save(any(Seat.class));

@@ -22,12 +22,12 @@ public class SeatService {
     }
 
     @Transactional
-    public Seat updateSeatStatus(Long seatId) {
+    public Seat updateSeatStatus(Long seatId, SeatStatus seatStatus) {
         //1. 좌석 정보 조회
         Seat seat = seatRepository.findById(seatId)
                 .orElseThrow(()-> new SeatNotFoundException("좌석을 찾을 수 없습니다."));
         //2. 좌석 정보 업데이트
-        Seat updatedSeat = seat.update(seat);
+        Seat updatedSeat = seat.update(seat, seatStatus);
         //3. 좌석 정보 저장
         return seatRepository.save(updatedSeat);
     }
