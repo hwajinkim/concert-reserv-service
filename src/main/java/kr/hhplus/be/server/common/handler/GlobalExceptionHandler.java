@@ -1,8 +1,6 @@
 package kr.hhplus.be.server.common.handler;
 
-import kr.hhplus.be.server.common.exception.AvailableSeatNotFoundException;
-import kr.hhplus.be.server.common.exception.ConcertScheduleNotFoundException;
-import kr.hhplus.be.server.common.exception.UserNotFoundException;
+import kr.hhplus.be.server.common.exception.*;
 import kr.hhplus.be.server.common.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +24,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AvailableSeatNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleAvailableSeatNotFoundException(AvailableSeatNotFoundException ex){
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(SeatNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleSeatNotFoundException(SeatNotFoundException ex){
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ScheduleNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleScheduleNotFoundException(ScheduleNotFoundException ex){
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }

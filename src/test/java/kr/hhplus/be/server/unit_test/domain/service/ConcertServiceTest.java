@@ -1,10 +1,8 @@
 package kr.hhplus.be.server.unit_test.domain.service;
 
 import kr.hhplus.be.server.common.exception.ConcertScheduleNotFoundException;
-import kr.hhplus.be.server.domain.concert.Concert;
-import kr.hhplus.be.server.domain.concert.ConcertRepository;
-import kr.hhplus.be.server.domain.concert.ConcertService;
-import kr.hhplus.be.server.domain.concert.Schedule;
+import kr.hhplus.be.server.common.exception.ScheduleNotFoundException;
+import kr.hhplus.be.server.domain.concert.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,6 +25,9 @@ public class ConcertServiceTest {
 
     @Mock
     private ConcertRepository concertRepository;
+
+    @Mock
+    private ScheduleRepository scheduleRepository;
 
 
     @Test
@@ -95,5 +96,49 @@ public class ConcertServiceTest {
         assertEquals(findConcertSchedule, mockConcert);
         verify(concertRepository,times(1)).findByConcertWithSchedule(concertId);
 
+    }
+
+    @Test
+    void 스케줄ID로_조회_시_스케줄_정보_없으면_ScheduleNotFoundException_발생(){
+        //given
+        Long scheduleId = 999L;
+
+        when(scheduleRepository.findById(scheduleId)).thenThrow(new ScheduleNotFoundException("스케줄 정보를 찾을 수 없습니다."));
+        //when
+        Exception exception = assertThrows(ScheduleNotFoundException.class,
+                ()-> concertService.updateScheduleRemainingTicket(scheduleId));
+        //then
+        assertEquals("스케줄 정보를 찾을 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    void 스케줄ID로_조회_시_정보_있으면_잔여_티켓수_1_감소_후_저장(){
+        //given
+        Long scheduleId = 1L;
+
+        Schedule mockSchedule = Schedule.builder()
+                .scheduleId(67891L)
+                .concertDateTime(LocalDateTime.of(2025,1,20,22,0,0))
+                .bookingStart(LocalDateTime.of(2025,1,5,10,0,0))
+                .bookingEnd(LocalDateTime.of(2025,1,15,18,0,0))
+                .remainingTicket(30)
+                .build();
+
+        Schedule updatedMockSchedule = Schedule.builder()
+                .scheduleId(67891L)
+                .concertDateTime(LocalDateTime.of(2025,1,20,22,0,0))
+                .bookingStart(LocalDateTime.of(2025,1,5,10,0,0))
+                .bookingEnd(LocalDateTime.of(2025,1,15,18,0,0))
+                .remainingTicket(mockSchedule.getRemainingTicket()-1)
+                .build();
+
+
+        when(scheduleRepository.findById(scheduleId)).thenReturn(Optional.of(mockSchedule));
+        when(scheduleRepository.save(any(Schedule.class))).thenReturn(updatedMockSchedule);
+        //when
+        Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(scheduleId);
+        //then
+        assertEquals(29, updatedSchedule.getRemainingTicket());
+        verify(scheduleRepository, times(1)).save(any(Schedule.class));
     }
 }

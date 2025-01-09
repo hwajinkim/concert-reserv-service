@@ -1,7 +1,7 @@
 package kr.hhplus.be.server.domain.concert;
 
 import kr.hhplus.be.server.common.exception.ConcertScheduleNotFoundException;
-import kr.hhplus.be.server.domain.dto.concert.ConcertDomainResult;
+import kr.hhplus.be.server.common.exception.ScheduleNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +14,8 @@ import java.util.List;
 public class ConcertService {
 
     private final ConcertRepository concertRepository;
+    private final ScheduleRepository scheduleRepository;
+
     public Concert findByConcertWithSchedule(Long concertId) {
         Concert concert = concertRepository.findByConcertWithSchedule(concertId)
                 .orElseThrow(()-> new ConcertScheduleNotFoundException("콘서트 스케줄 정보를 찾을 수 없습니다."));
@@ -37,5 +39,14 @@ public class ConcertService {
 
         // Concert와 연관된 Schedule 모두 저장
         return concertRepository.save(concert);
+    }
+
+    @Transactional
+    public Schedule updateScheduleRemainingTicket(Long scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId)
+                .orElseThrow(()-> new ScheduleNotFoundException("스케줄 정보를 찾을 수 없습니다."));
+
+        Schedule updatedSchedule = schedule.update(schedule);
+        return scheduleRepository.save(updatedSchedule);
     }
 }

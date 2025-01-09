@@ -1,6 +1,7 @@
 package kr.hhplus.be.server.unit_test.domain.service;
 
 import kr.hhplus.be.server.common.exception.AvailableSeatNotFoundException;
+import kr.hhplus.be.server.common.exception.SeatNotFoundException;
 import kr.hhplus.be.server.domain.concert.Schedule;
 import kr.hhplus.be.server.domain.seat.Seat;
 import kr.hhplus.be.server.domain.seat.SeatRepository;
@@ -13,9 +14,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,7 +36,7 @@ public class SeatServiceTest {
     void 스케줄ID로_조회_시_예약_가능한_좌석_정보가_없으면_AvailableSeatNotFoundException_발생(){
         //given
         Long scheduleId = 999L;
-        when(seatRepository.findAvailableSeatsByScheduleId(scheduleId)).thenReturn(null);
+        when(seatRepository.findAvailableSeatsByScheduleId(scheduleId)).thenThrow(new AvailableSeatNotFoundException("예약 가능한 좌석 정보를 찾을 수 없습니다."));
 
         //when & then
         Exception exception = assertThrows(AvailableSeatNotFoundException.class,
@@ -64,5 +69,45 @@ public class SeatServiceTest {
         assertEquals(availableSeats, mockSeats);
     }
 
+    @Test
+    void 좌석_예약_시_좌석ID에_해당하는_좌석이_없으면_SeatNotFoundException_발생(){
+        //given
+        Long seatId = 999L;
+        when(seatRepository.findById(seatId)).thenThrow(new SeatNotFoundException("좌석을 찾을 수 없습니다."));
+        //when & then
+        Exception exception = assertThrows(SeatNotFoundException.class,
+                ()-> seatService.updateSeatStatus(seatId));
 
+        assertEquals("좌석을 찾을 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    void 좌석_예약_시_좌석ID에_해당하는_좌석이_있으면_좌석상태_변경_후_Seat_반환(){
+        //given
+        Long seatId = 1L;
+
+        Seat mockSeat = Seat.builder()
+                .seatId(seatId)
+                .seatNumber(1)
+                .seatStatus(SeatStatus.AVAILABLE)
+                .seatPrice(BigDecimal.valueOf(10000.00))
+                .schedule(null)
+                .build();
+
+        Seat updatedMockSeat = Seat.builder()
+                .seatId(seatId)
+                .seatNumber(1)
+                .seatStatus(SeatStatus.OCCUPIED)
+                .seatPrice(BigDecimal.valueOf(10000.00))
+                .schedule(null)
+                .build();
+
+        when(seatRepository.findById(seatId)).thenReturn(Optional.of(mockSeat));
+        when(seatRepository.save(any(Seat.class))).thenReturn(updatedMockSeat);
+        //when
+        Seat updatedSeat = seatService.updateSeatStatus(seatId);
+        //then
+        assertEquals(SeatStatus.OCCUPIED, updatedSeat.getSeatStatus());
+        verify(seatRepository).save(any(Seat.class));
+    }
 }

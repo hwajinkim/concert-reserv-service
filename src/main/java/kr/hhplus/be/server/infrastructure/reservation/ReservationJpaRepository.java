@@ -1,4 +1,9 @@
 package kr.hhplus.be.server.infrastructure.reservation;
 
-public interface ReservationJpaRepository {
+import kr.hhplus.be.server.domain.reservation.Reservation;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ReservationJpaRepository extends JpaRepository<Reservation, Long> {
 }
