@@ -1,20 +1,21 @@
-package kr.hhplus.be.server.interfaces.api.dto;
+package kr.hhplus.be.server.interfaces.api.dto.reservation;
 
+import kr.hhplus.be.server.application.dto.reservation.ReservationResult;
 import kr.hhplus.be.server.domain.reservation.ReservationState;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class ReservationResponse {
-    private Long reservationId;
-    private Long scheduleId;
-    private Long seatId;
-    private Long userId;
-    private ReservationState state;
-    private LocalDateTime createAt;
+public record ReservationResponse (
+        Long reservationId,
+        Long scheduleId,
+        Long seatId,
+        Long userId,
+        ReservationState state,
+        LocalDateTime createAt
+){
+
+
+    public static ReservationResponse from(ReservationResult reservationResult) {
+        return new ReservationResponse(reservationResult.reservationId(), reservationResult.scheduleId(), reservationResult.seatId(), reservationResult.userId(),
+                reservationResult.reservationState(), reservationResult.createdAt());
+    }
 }
