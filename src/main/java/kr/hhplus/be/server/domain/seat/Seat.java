@@ -43,4 +43,14 @@ public class Seat extends BaseEntity {
         this.seatPrice = seatPrice;
         this.schedule = schedule;
     }
+
+    public Seat update(Seat seat) {
+        return Seat.builder()
+                .seatId(seat.getId())
+                .seatNumber(seat.getSeatNumber())
+                .seatStatus(SeatStatus.OCCUPIED)
+                .seatPrice(seat.getSeatPrice())
+                .schedule(seat.getSchedule())
+                .build();
+    }
 }

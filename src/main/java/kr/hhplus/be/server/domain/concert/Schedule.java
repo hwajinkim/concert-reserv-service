@@ -78,4 +78,18 @@ public class Schedule extends BaseEntity {
 
         this.seats.add(updatedSeat);
     }
+
+    public Schedule update(Schedule schedule) {
+        int decreaseRemainingTicket = schedule.getRemainingTicket() - 1;
+
+        return Schedule.builder()
+                .scheduleId(schedule.getId())
+                .price(schedule.getPrice())
+                .concertDateTime(schedule.getConcertDateTime())
+                .bookingStart(schedule.getBookingStart())
+                .bookingEnd(schedule.getBookingEnd())
+                .remainingTicket(decreaseRemainingTicket)
+                .totalTicket(schedule.getTotalTicket())
+                .build();
+    }
 }

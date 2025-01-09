@@ -2,6 +2,7 @@ package kr.hhplus.be.server.domain.reservation;
 
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
+import kr.hhplus.be.server.domain.seat.Seat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -44,5 +45,18 @@ public class Reservation extends BaseEntity {
         this.reservationState = reservationState;
         this.seatPrice = seatPrice;
         this.expiredAt = expiredAt;
+    }
+
+    public Reservation create(Seat seat, Long userId) {
+        // 현재 시간에 5분 추가(임시 배정 목적)
+        LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(5);
+
+        return Reservation.builder()
+                .userId(userId)
+                .seatId(seat.getId())
+                .reservationState(ReservationState.PANDING)
+                .seatPrice(seat.getSeatPrice())
+                .expiredAt(expiryTime)
+                .build();
     }
 }
