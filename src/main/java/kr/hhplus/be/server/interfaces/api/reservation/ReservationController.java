@@ -1,41 +1,34 @@
 package kr.hhplus.be.server.interfaces.api.reservation;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import kr.hhplus.be.server.application.dto.reservation.ReservationParam;
+import kr.hhplus.be.server.application.dto.reservation.ReservationResult;
+import kr.hhplus.be.server.application.reservation.ReservationFacade;
 import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
-import kr.hhplus.be.server.domain.payment.PaymentStatus;
 import kr.hhplus.be.server.domain.reservation.ReservationState;
-import kr.hhplus.be.server.interfaces.api.dto.PaymentRequeset;
-import kr.hhplus.be.server.interfaces.api.dto.PaymentResponse;
-import kr.hhplus.be.server.interfaces.api.dto.ReservationRequest;
-import kr.hhplus.be.server.interfaces.api.dto.ReservationResponse;
+import kr.hhplus.be.server.interfaces.api.dto.reservation.ReservationRequest;
+import kr.hhplus.be.server.interfaces.api.dto.reservation.ReservationResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+@Tag(name = "좌석 예약 API", description = "좌석에 대해 예약 신청하는 api 입니다.")
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ReservationController {
+    private final ReservationFacade reservationFacade;
 
     // 예약 API
-    @PostMapping("/concerts/seats/reserve")
-    public ApiResponse<ReservationResponse> createSeatReservation(@RequestBody ReservationRequest reservationRequest){
+    @Operation(summary = "좌석 예약 신청")
+    @PostMapping("/reservations")
+    public ApiResponse<ReservationResponse> createSeatReservation(@RequestHeader(value = "Queue-Token", required = false) Long tokenUserId, @RequestBody ReservationRequest reservationRequest){
 
-        ReservationResponse reservationResponse = new ReservationResponse(12345L, 12345L, 12345L,
-                67890L, ReservationState.PANDING,
-                LocalDateTime.of(2025,1,1,12,0,0, 0));
-        return ApiResponse.success(ResponseCode.SEAT_RESERV_CREATE_SUCCESS.getMessage(), reservationResponse);
-    }
+        ReservationRequest updatedRequest = ReservationRequest.withUserId(tokenUserId, reservationRequest);
+        ReservationParam reservationParam = ReservationParam.from(updatedRequest);
 
-    // 결제 API
-    @PostMapping("/reservations/pay")
-    public ApiResponse<PaymentResponse> createPayment(@RequestBody PaymentRequeset paymentRequeset){
-        PaymentResponse paymentResponse = new PaymentResponse(12345L, 12345L, 10L,
-                "Awesome Concert", LocalDateTime.of(2025, 1, 1, 19,0,0),
-                100.00, PaymentStatus.COMPLETED, LocalDateTime.of(2025, 1, 1, 12,0,0));
-        return ApiResponse.success(ResponseCode.PAYMENT_CREATED_SUCCESS.getMessage(), paymentResponse);
+        return ApiResponse.success(ResponseCode.SEAT_RESERV_CREATE_SUCCESS.getMessage(), ReservationResponse.from(reservationFacade.createSeatReservation(reservationParam)));
     }
 }
