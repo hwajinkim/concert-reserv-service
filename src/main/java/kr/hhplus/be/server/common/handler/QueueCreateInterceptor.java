@@ -25,12 +25,11 @@ public class QueueCreateInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Queue-Token");
 
         //헤더에 토큰이 비어있지 않고 검증도 통과하면 토큰 발급 중지
-        if (token != null && !token.isEmpty() && queueFacade.isQueueCreatedValidToken(token)) {
+        if (token != null && !token.isEmpty() && queueFacade.isQueueValidToken(token)) {
 
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/plain; charset=UTF-8");
-            response.setStatus(HttpServletResponse.SC_CONFLICT); // 401 상태 반환
-            /*response.getWriter().write("헤더에 기존 사용자 대기열 토큰이 있습니다.");*/
+            response.setStatus(HttpServletResponse.SC_CONFLICT); // 409 상태 반환
             // ApiResponse 객체 생성
             ApiResponse<Object> apiResponse = ApiResponse.failure("헤더에 기존 사용자의 대기열 토큰이 포함되어 있습니다.", HttpServletResponse.SC_CONFLICT);
 
