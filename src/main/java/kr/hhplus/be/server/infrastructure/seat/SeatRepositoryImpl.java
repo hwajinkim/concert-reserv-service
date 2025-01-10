@@ -32,4 +32,9 @@ public class SeatRepositoryImpl implements SeatRepository {
     public Optional<Object> findScheduleIdBySeatId(Long seatId) {
         return seatJpaRepository.findScheduleIdBySeatId(seatId);
     }
+
+    @Override
+    public Optional<Seat> findByIdWithLock(Long seatId) {
+        return seatJpaRepository.findByIdWithLock(seatId);
+    }
 }
