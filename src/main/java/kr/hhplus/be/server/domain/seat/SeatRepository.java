@@ -15,4 +15,6 @@ public interface SeatRepository {
     Seat save(Seat updatedSeat);
 
     Optional<Object> findScheduleIdBySeatId(Long seatId);
+
+    Optional<Seat> findByIdWithLock(Long seatId);
 }

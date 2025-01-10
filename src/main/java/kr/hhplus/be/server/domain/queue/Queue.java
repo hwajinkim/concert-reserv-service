@@ -61,4 +61,8 @@ public class Queue extends BaseEntity {
                 .removedAt(LocalDateTime.now())
                 .build();
     }
+
+    public void setStatus(QueueStatus queueStatus) {
+        this.queueStatus = queueStatus;
+    }
 }
