@@ -28,8 +28,9 @@ public class UserService {
 
     @Transactional
     public User charge(Long userId, BigDecimal amount) {
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByIdWithPessimisticLock(userId)
                 .orElseThrow(()-> new UserNotFoundException("사용자의 정보가 없습니다."));
+
         BigDecimal balanceBefore = user.getPointBalance();
 
         User userUpdate = user.charge(amount);
