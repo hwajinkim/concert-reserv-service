@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.integration_test.inter.set_up;
+package kr.hhplus.be.server.integration_test.application.set_up;
 
 import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationState;
