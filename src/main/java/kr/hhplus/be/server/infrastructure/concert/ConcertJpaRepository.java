@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface ConcertJpaRepository extends JpaRepository<Concert, Long> {
 
-    @Query("SELECT c FROM Concert c JOIN FETCH c.schedules WHERE c.id = :concertId")
+    @Query("SELECT c FROM Concert c JOIN FETCH c.schedules s WHERE c.id = :concertId")
     Optional<Concert> findByConcertWithSchedule(@Param("concertId") Long concertId);
 }

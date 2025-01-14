@@ -20,4 +20,9 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     public Schedule save(Schedule schedule) {
         return scheduleJpaRepository.save(schedule);
     }
+
+    @Override
+    public Optional<Schedule> findScheduleWithAvailableSeat(Long scheduleId) {
+        return scheduleJpaRepository.findScheduleWithAvailableSeat(scheduleId);
+    }
 }

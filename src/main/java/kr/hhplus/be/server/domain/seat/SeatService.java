@@ -14,13 +14,6 @@ import java.util.List;
 public class SeatService {
 
     private final SeatRepository seatRepository;
-    public List<Seat> getAvailableSeats(Long scheduleId) {
-        List<Seat> availableSeats = seatRepository.findAvailableSeatsByScheduleId(scheduleId);
-        if(availableSeats == null){
-            throw new AvailableSeatNotFoundException("예약 가능한 좌석 정보를 찾을 수 없습니다.");
-        }
-        return availableSeats;
-    }
 
     @Transactional
     public Seat updateSeatStatus(Long seatId, SeatStatus seatStatus) {

@@ -1,7 +1,10 @@
 package kr.hhplus.be.server.domain.concert;
 
+import kr.hhplus.be.server.common.exception.AvailableSeatNotFoundException;
 import kr.hhplus.be.server.common.exception.ConcertScheduleNotFoundException;
 import kr.hhplus.be.server.common.exception.ScheduleNotFoundException;
+import kr.hhplus.be.server.domain.seat.Seat;
+import kr.hhplus.be.server.domain.seat.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,12 +18,21 @@ public class ConcertService {
 
     private final ConcertRepository concertRepository;
     private final ScheduleRepository scheduleRepository;
+    private final SeatRepository seatRepository;
 
     public Concert findByConcertWithSchedule(Long concertId) {
+        return concertRepository.findByConcertWithSchedule(concertId)
+                .orElseThrow(()-> new ConcertScheduleNotFoundException("콘서트 스케줄 정보를 찾을 수 없습니다."));
+    }
+
+    public Schedule findByConcertWithScheduleWithSeat(Long concertId, Long scheduleId){
         Concert concert = concertRepository.findByConcertWithSchedule(concertId)
                 .orElseThrow(()-> new ConcertScheduleNotFoundException("콘서트 스케줄 정보를 찾을 수 없습니다."));
 
-        return concert;
+        Schedule schedule = scheduleRepository.findScheduleWithAvailableSeat(scheduleId)
+                .orElseThrow(()-> new AvailableSeatNotFoundException("예약 가능한 좌석 정보를 찾을 수 없습니다."));
+
+        return schedule;
     }
 
     @Transactional

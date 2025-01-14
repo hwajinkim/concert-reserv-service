@@ -1,5 +1,6 @@
 package kr.hhplus.be.server.interfaces.api.dto.concert;
 
+import kr.hhplus.be.server.domain.concert.Schedule;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
