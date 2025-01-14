@@ -1,7 +1,9 @@
 package kr.hhplus.be.server.domain.reservation;
 
 import kr.hhplus.be.server.common.exception.ReservationNotFoundException;
+import kr.hhplus.be.server.common.exception.SeatNotFoundException;
 import kr.hhplus.be.server.domain.seat.Seat;
+import kr.hhplus.be.server.domain.seat.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,8 @@ public class ReservationService {
 
     @Transactional
     public Reservation creatSeatReservation(Seat seat, Long userId) {
-       Reservation createdReservation =  new Reservation().create(seat, userId);
-       return reservationRepository.save(createdReservation);
+        Reservation createdReservation =  new Reservation().create(seat, userId);
+        return reservationRepository.save(createdReservation);
     }
 
     public Reservation findByReservationIdAndSeatId(Long reservationId, Long seatId) {

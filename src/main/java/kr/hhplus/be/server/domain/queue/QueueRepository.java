@@ -1,5 +1,7 @@
 package kr.hhplus.be.server.domain.queue;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 public interface QueueRepository {
@@ -8,4 +10,9 @@ public interface QueueRepository {
     Queue findByUserId(Long userId);
 
     Optional<Queue> findById(Long queueId);
+    List<Queue> findTopNByWaitStatusOrderByCreatedAt(String queueStatus, int limit);
+
+    void updateQueueStatus(QueueStatus queueStatus, List<Long> queueIds);
+
+    int deleteExpiredTokens(LocalDateTime now);
 }
