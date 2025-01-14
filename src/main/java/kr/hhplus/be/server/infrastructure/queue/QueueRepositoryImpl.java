@@ -5,7 +5,7 @@ import kr.hhplus.be.server.domain.queue.QueueRepository;
 import kr.hhplus.be.server.domain.queue.QueueStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +30,17 @@ public class QueueRepositoryImpl implements QueueRepository {
     }
 
     @Override
-    public List<Queue> findTopNByStatusOrderByCreatedAt(QueueStatus queueStatus, int limit) {
-        return queueJpaRepository.findTopNByStatusOrderByCreatedAt(queueStatus, limit);
+    public List<Queue> findTopNByWaitStatusOrderByCreatedAt(String queueStatus, int limit) {
+        return queueJpaRepository.findTopNByWaitStatusOrderByCreatedAt(queueStatus, limit);
     }
 
     @Override
-    public void saveAll(List<Queue> pendingQueues) {
-        queueJpaRepository.saveAll(pendingQueues);
+    public void updateQueueStatus(QueueStatus queueStatus, List<Long> queueIds) {
+        queueJpaRepository.updateQueueStatus(queueStatus, queueIds);
+    }
+
+    @Override
+    public int deleteExpiredTokens(LocalDateTime now) {
+        return queueJpaRepository.deleteExpiredTokens(now);
     }
 }

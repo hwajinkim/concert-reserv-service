@@ -10,6 +10,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -42,5 +46,44 @@ public class QueueServiceTest {
         //then
         assertEquals(savedQueue, mockQueue);
         verify(queueRepository, times(1)).save(any(Queue.class));
+    }
+
+    @Test
+    void 대기_상태의_대기열_토큰_활성화_상태로_변경(){
+        //given
+        List<Queue> waitQueues = List.of(
+                Queue.builder()
+                    .id(1L)
+                    .userId(1L)
+                    .queueStatus(QueueStatus.WAIT)
+                    .build(),
+                Queue.builder()
+                    .id(2L)
+                    .userId(1L)
+                    .queueStatus(QueueStatus.WAIT)
+                    .build(),
+                Queue.builder()
+                    .id(3L)
+                    .userId(1L)
+                    .queueStatus(QueueStatus.WAIT)
+                    .build()
+        );
+
+        when(queueRepository.findTopNByWaitStatusOrderByCreatedAt("WAIT", 10)).thenReturn(waitQueues);
+
+        //when
+        queueService.activeToken();
+
+        //then
+        verify(queueRepository, times(1)).updateQueueStatus(QueueStatus.ACTIVE, List.of(1L, 2L, 3L));
+    }
+
+    @Test
+    void 대기_상태의_대기열_토큰_만료_상태로_변경(){
+        //given
+        //when
+        queueService.deleteToken();
+        //then
+        verify(queueRepository,times(1)).deleteExpiredTokens(any(LocalDateTime.class));
     }
 }

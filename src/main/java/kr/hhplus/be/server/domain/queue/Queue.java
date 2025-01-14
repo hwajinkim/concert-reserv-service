@@ -49,6 +49,7 @@ public class Queue extends BaseEntity {
         return Queue.builder()
                 .userId(userId)
                 .queueStatus(QueueStatus.WAIT)
+                .expiredAt(LocalDateTime.now().plusMinutes(10))
                 .build();
     }
 

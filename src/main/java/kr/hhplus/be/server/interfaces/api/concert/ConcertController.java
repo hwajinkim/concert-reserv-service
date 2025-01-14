@@ -7,6 +7,7 @@ import kr.hhplus.be.server.application.dto.concert.ConcertResult;
 import kr.hhplus.be.server.application.dto.concert.ScheduleSeatResult;
 import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
+import kr.hhplus.be.server.domain.concert.ConcertService;
 import kr.hhplus.be.server.interfaces.api.dto.concert.ConcertResponse;
 import kr.hhplus.be.server.interfaces.api.dto.concert.ScheduleResponse;
 import kr.hhplus.be.server.interfaces.api.dto.concert.ScheduleSeatResponse;
@@ -24,6 +25,8 @@ import java.util.List;
 public class ConcertController {
 
     private final ConcertFacade concertFacade;
+
+    private final ConcertService concertService;
     // 예약 가능 날짜 조회 API
     @Operation(summary = "예약 가능 날짜 조회")
     @GetMapping("/concerts/{concertId}/schedules")

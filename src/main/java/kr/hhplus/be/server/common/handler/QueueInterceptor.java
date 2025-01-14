@@ -22,15 +22,15 @@ public class QueueInterceptor implements HandlerInterceptor {
         log.info("==================== QueueInterceptor START ====================");
         log.info(" Request URI \t: " + request.getRequestURI());
 
-        String token = request.getHeader("Queue-Token");
+        String tokenQueueId = request.getHeader("Queue-Token-Queue-Id");
 
         //헤더에 토큰이 비어있거나 검증에 통과하지 못하면 대기열 진입 불가
-        if (token == null || token.isEmpty() || !queueFacade.isQueueValidToken(token)) {
+        if (tokenQueueId == null || tokenQueueId.isEmpty() || !queueFacade.isQueueValidToken(tokenQueueId)) {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/plain; charset=UTF-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 상태 반환
             // ApiResponse 객체 생성
-            ApiResponse<Object> apiResponse = ApiResponse.failure("사용자 대기열 토큰 검증에 실패하였습니다.", HttpServletResponse.SC_UNAUTHORIZED);
+            ApiResponse<Object> apiResponse = ApiResponse.failure("해당 대기열 토큰은 접근할 수 없습니다.", HttpServletResponse.SC_UNAUTHORIZED);
 
             // JSON 변환 및 응답 쓰기
             ObjectMapper objectMapper = new ObjectMapper();
