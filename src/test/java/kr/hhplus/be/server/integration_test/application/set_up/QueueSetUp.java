@@ -13,9 +13,10 @@ public class QueueSetUp {
     private QueueJpaRepository queueJpaRepository;
 
     public Queue saveQueue(Long userId, QueueStatus queueStatus) {
-        return Queue.builder()
+         Queue queue = Queue.builder()
                 .userId(userId)
                 .queueStatus(queueStatus)
                 .build();
+        return queueJpaRepository.save(queue);
     }
 }

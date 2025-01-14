@@ -10,6 +10,7 @@ import kr.hhplus.be.server.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
@@ -21,6 +22,7 @@ public class QueueFacade {
     private final UserService userService;
 
     // 유저 대기열 토큰 생성
+    @Transactional
     public QueueTokenResult createQueueToken(QueueTokenParam queueTokenParam) {
         User user = userService.findById(queueTokenParam.userId());
         Queue queue = queueService.createQueueToken(queueTokenParam.userId());
@@ -28,7 +30,7 @@ public class QueueFacade {
         return QueueTokenResult.from(queue);
     }
 
-    // 사용자 대기열 토큰 발급 시 토큰이 있는지와 활성 상태인지 체크
+    // 인터셉터에서 토큰이 있는지와 활성 상태인지 체크
     public boolean isQueueValidToken(String tokenQueueId) {
         Queue queue = queueService.findById(Long.valueOf(tokenQueueId));
         if (queue == null) return false;

@@ -19,17 +19,17 @@ import java.util.stream.Collectors;
 public class QueueService {
 
     private final QueueRepository queueRepository;
-    @Transactional
+
     public Queue createQueueToken(Long userId) {
         Queue queue = new Queue();
         Queue createdQueue = queue.create(userId);
         return queueRepository.save(createdQueue);
     }
 
-    public Queue findById(Long userId) {
-        return queueRepository.findByUserId(userId);
+    public Queue findById(Long tokenQueueId) {
+        return queueRepository.findById(tokenQueueId)
+                .orElseThrow(()-> new QueueNotFoundException("유저 대기열 토큰을 찾을 수 없습니다."));
     }
-
 
     @Transactional
     public Queue updateQueue(Long queueId) {
