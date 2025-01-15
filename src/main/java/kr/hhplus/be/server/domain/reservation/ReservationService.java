@@ -1,13 +1,19 @@
 package kr.hhplus.be.server.domain.reservation;
 
+import kr.hhplus.be.server.common.exception.MissingExpiryTimeException;
+import kr.hhplus.be.server.common.exception.ReservationExpiredException;
 import kr.hhplus.be.server.common.exception.ReservationNotFoundException;
 import kr.hhplus.be.server.common.exception.SeatNotFoundException;
+import kr.hhplus.be.server.domain.dto.ReservationCheckResult;
 import kr.hhplus.be.server.domain.seat.Seat;
 import kr.hhplus.be.server.domain.seat.SeatRepository;
+import kr.hhplus.be.server.domain.seat.SeatStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @Slf4j
 @Service
@@ -25,9 +31,24 @@ public class ReservationService {
                 .orElseThrow(()-> new ReservationNotFoundException("예약 정보를 찾을 수 없습니다."));
     }
 
-    @Transactional
-    public Reservation updateSeatReservation(Seat seat, Long reservationId, Long userId, ReservationState reservationState) {
-        Reservation updatedReservation = new Reservation().update(seat,reservationId, userId, reservationState);
-        return reservationRepository.save(updatedReservation);
+    public ReservationCheckResult checkReservationExpiration(Long reservationId, Long seatId) {
+        Reservation reservation = reservationRepository.findByReservationIdAndSeatId(reservationId, seatId)
+                .orElseThrow(()-> new ReservationNotFoundException("예약 정보를 찾을 수 없습니다."));
+
+        Reservation updatedReservation = null;
+        boolean result = false;
+        if(reservation.getExpiredAt() != null){
+            //임시 예약 만료 되었을 때
+            if(reservation.getExpiredAt().isBefore(LocalDateTime.now())){
+                // 예약 상태 "CANCELLED"로 변경
+                updatedReservation = new Reservation().update(reservation.getId(), reservation.getSeatId(), reservation.getUserId(), ReservationState.CANCELLED, reservation.getSeatPrice());
+                result = true;
+            } else {  //임시 예약 만료 안 되었을 때
+                // 예약 상태 "PAID"로 변경
+                updatedReservation = new Reservation().update(reservation.getId(), reservation.getSeatId(), reservation.getUserId(), ReservationState.PAID, reservation.getSeatPrice());
+                result = false;
+            }
+        }
+        return new ReservationCheckResult(result, reservationRepository.save(updatedReservation));
     }
 }

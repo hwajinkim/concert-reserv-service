@@ -2,11 +2,8 @@ package kr.hhplus.be.server.application.reservation;
 
 import kr.hhplus.be.server.application.dto.reservation.ReservationParam;
 import kr.hhplus.be.server.application.dto.reservation.ReservationResult;
-import kr.hhplus.be.server.domain.concert.Concert;
 import kr.hhplus.be.server.domain.concert.ConcertService;
 import kr.hhplus.be.server.domain.concert.Schedule;
-import kr.hhplus.be.server.domain.concert.ScheduleService;
-import kr.hhplus.be.server.domain.dto.SeatScheduleResult;
 import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationService;
 import kr.hhplus.be.server.domain.seat.Seat;
@@ -20,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ReservationFacade {
 
-    private final SeatService seatService;
     private final ConcertService concertService;
     private final ReservationService reservationService;
     @Transactional

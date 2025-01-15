@@ -4,7 +4,6 @@ import kr.hhplus.be.server.common.exception.AvailableSeatNotFoundException;
 import kr.hhplus.be.server.common.exception.ConcertScheduleNotFoundException;
 import kr.hhplus.be.server.common.exception.ScheduleNotFoundException;
 import kr.hhplus.be.server.common.exception.SeatNotFoundException;
-import kr.hhplus.be.server.domain.dto.SeatScheduleResult;
 import kr.hhplus.be.server.domain.seat.Seat;
 import kr.hhplus.be.server.domain.seat.SeatRepository;
 import kr.hhplus.be.server.domain.seat.SeatStatus;

@@ -6,6 +6,7 @@ import kr.hhplus.be.server.common.exception.MissingExpiryTimeException;
 import kr.hhplus.be.server.common.exception.ReservationExpiredException;
 import kr.hhplus.be.server.domain.concert.ConcertService;
 import kr.hhplus.be.server.domain.concert.Schedule;
+import kr.hhplus.be.server.domain.dto.ReservationCheckResult;
 import kr.hhplus.be.server.domain.payment.PaymentService;
 import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationService;
@@ -92,26 +93,16 @@ public class PaymentFacadeTest {
                 .seatStatus(SeatStatus.AVAILABLE)
                 .build();
 
-        Seat findSeat = Seat.builder()
-                .seatId(seatId)
-                .seatStatus(SeatStatus.AVAILABLE)
-                .build();
-
         Schedule updatedSchedule = Schedule.builder()
                 .scheduleId(1L)
                 .remainingTicket(101)
                 .build();
 
-        Reservation updatedReservation = Reservation.builder()
-                .reservationState(ReservationState.CANCELLED)
-                .build();
+        ReservationCheckResult reservationCheckResult = new ReservationCheckResult(false, expiredReservation);
 
-        when(reservationService.findByReservationIdAndSeatId(reservationId, seatId)).thenReturn(expiredReservation);
+        when(reservationService.checkReservationExpiration(reservationId, seatId)).thenReturn(reservationCheckResult);
         when(concertService.updateSeatStatus(seatId, SeatStatus.AVAILABLE)).thenReturn(updatedSeat);
-        when(seatService.findScheduleIdBySeatId(seatId)).thenReturn(1L);
         when(concertService.updateScheduleRemainingTicket(1L, 1)).thenReturn(updatedSchedule);
-        when(seatService.findById(seatId)).thenReturn(findSeat);
-        when(reservationService.updateSeatReservation(findSeat, reservationId, userId, ReservationState.CANCELLED)).thenReturn(updatedReservation);
 
         //when
         Exception exception = assertThrows(ReservationExpiredException.class,
