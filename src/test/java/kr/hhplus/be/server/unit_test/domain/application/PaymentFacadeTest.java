@@ -107,7 +107,7 @@ public class PaymentFacadeTest {
                 .build();
 
         when(reservationService.findByReservationIdAndSeatId(reservationId, seatId)).thenReturn(expiredReservation);
-        when(seatService.updateSeatStatus(seatId, SeatStatus.AVAILABLE)).thenReturn(updatedSeat);
+        when(concertService.updateSeatStatus(seatId, SeatStatus.AVAILABLE)).thenReturn(updatedSeat);
         when(seatService.findScheduleIdBySeatId(seatId)).thenReturn(1L);
         when(concertService.updateScheduleRemainingTicket(1L, 1)).thenReturn(updatedSchedule);
         when(seatService.findById(seatId)).thenReturn(findSeat);

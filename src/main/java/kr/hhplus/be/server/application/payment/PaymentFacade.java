@@ -48,7 +48,7 @@ public class PaymentFacade {
             //2-1. *예약* 만료 시간 < 현재 시간이면 (예약 만료시)
             if(findReservation.getExpiredAt().isBefore(LocalDateTime.now())){
                 //2-1-1. *좌석* 상태 'AVAILABLE'으로 변경
-                Seat updatedSeat = seatService.updateSeatStatus(paymentParam.seatId(), SeatStatus.AVAILABLE);
+                Seat updatedSeat = concertService.updateSeatStatus(paymentParam.seatId(), SeatStatus.AVAILABLE);
 
                 //2-1-2. *스케줄* 잔여 티켓 업데이트 +1
                 Long scheduleId = seatService.findScheduleIdBySeatId(paymentParam.seatId());
@@ -64,7 +64,7 @@ public class PaymentFacade {
                 User user = userService.use(paymentParam.userId(), findReservation.getSeatPrice());
 
                 //2-2-2. *좌석* 상태 'OCCUPIED'으로 변경
-                Seat updatedSeat = seatService.updateSeatStatus(findReservation.getSeatId(), SeatStatus.OCCUPIED);
+                Seat updatedSeat = concertService.updateSeatStatus(findReservation.getSeatId(), SeatStatus.OCCUPIED);
 
                 //2-2-3. *스케줄* 잔여 티켓 업데이트 -1
                 Long scheduleId = seatService.findScheduleIdBySeatId(paymentParam.seatId());

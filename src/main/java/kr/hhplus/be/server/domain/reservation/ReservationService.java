@@ -15,18 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class ReservationService {
     private final ReservationRepository reservationRepository;
 
-    @Transactional
     public Reservation creatSeatReservation(Seat seat, Long userId) {
         Reservation createdReservation =  new Reservation().create(seat, userId);
         return reservationRepository.save(createdReservation);
     }
 
     public Reservation findByReservationIdAndSeatId(Long reservationId, Long seatId) {
-
-        Reservation findReservation = reservationRepository.findByReservationIdAndSeatId(reservationId, seatId)
+         return reservationRepository.findByReservationIdAndSeatId(reservationId, seatId)
                 .orElseThrow(()-> new ReservationNotFoundException("예약 정보를 찾을 수 없습니다."));
-
-        return findReservation;
     }
 
     @Transactional
