@@ -46,15 +46,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(MissingExpiryTimeException.class)
-    public ResponseEntity<ErrorResponse> handleMissingExpiryTimeException(MissingExpiryTimeException ex){
+    @ExceptionHandler(ReservationBadStatusException.class)
+    public ResponseEntity<ErrorResponse> handleReservationExpiredException(ReservationBadStatusException ex){
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
-    @ExceptionHandler(ReservationExpiredException.class)
-    public ResponseEntity<ErrorResponse> handleReservationExpiredException(ReservationExpiredException ex){
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.GONE.value(), ex.getMessage());
-        return new ResponseEntity<>(errorResponse, HttpStatus.GONE);
     }
 
 

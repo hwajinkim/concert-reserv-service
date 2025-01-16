@@ -7,8 +7,12 @@ import kr.hhplus.be.server.domain.concert.Concert;
 import kr.hhplus.be.server.domain.concert.Schedule;
 import kr.hhplus.be.server.domain.concert.Seat;
 import kr.hhplus.be.server.domain.concert.SeatStatus;
+import kr.hhplus.be.server.domain.reservation.Reservation;
+import kr.hhplus.be.server.domain.reservation.ReservationRepository;
+import kr.hhplus.be.server.domain.reservation.ReservationState;
 import kr.hhplus.be.server.domain.user.User;
 import kr.hhplus.be.server.integration_test.application.set_up.ConcertSetUp;
+import kr.hhplus.be.server.integration_test.application.set_up.ReservationSetUp;
 import kr.hhplus.be.server.integration_test.application.set_up.ScheduleSetUp;
 import kr.hhplus.be.server.integration_test.application.set_up.UserSetUp;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +24,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class ReservationFacadeIntegrationTest extends BaseIntegrationTest{
 
@@ -32,6 +38,10 @@ public class ReservationFacadeIntegrationTest extends BaseIntegrationTest{
     private ConcertSetUp concertSetUp;
     @Autowired
     private ScheduleSetUp scheduleSetUp;
+    @Autowired
+    private ReservationSetUp reservationSetUp;
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     private List<Schedule> scheduleList;
 
@@ -91,4 +101,29 @@ public class ReservationFacadeIntegrationTest extends BaseIntegrationTest{
         assertNotNull(reservationResult);
     }
 
+    @Test
+    void 임시예약_만료_스케줄러_확인(){
+        //given
+        User user = userSetUp.saveUser("김화진", BigDecimal.valueOf(50000.00));
+
+        Concert concert = concertSetUp.saveConcert("Awesome Concert", scheduleList);
+
+        Schedule schedule = scheduleSetUp.saveSchedule(
+                BigDecimal.valueOf(50000.00),
+                LocalDateTime.of(2025,1,15,20,0,0),
+                LocalDateTime.of(2025,1,1, 10,0,0),
+                LocalDateTime.of(2025,1,10,18,0,0),
+                50, 100, concert, seatList);
+
+        Reservation reservation = reservationSetUp.saveReservation(
+                user.getId(),
+                schedule.getSeats().get(0).getId(),
+                ReservationState.PANDING,
+                schedule.getSeats().get(0).getSeatPrice(),
+                LocalDateTime.now().plusMinutes(5)
+        );
+        //when
+        reservationFacade.checkReservationExpiration();
+        //then
+    }
 }
