@@ -41,3 +41,7 @@ INSERT INTO seat (seat_id, schedule_id, seat_number, seat_status, seat_price, cr
 (4, 1, 4, 'AVAILABLE', 60000.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00'),
 (5, 1, 5, 'OCCUPIED', 60000.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00');
 
+INSERT INTO reservation (user_id, seat_id, reservation_state, seat_price, created_at, updated_at, expired_at) VALUES
+(1, 1, 'PANDING', 50.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00', '2025-01-15 23:59:59');
+
+

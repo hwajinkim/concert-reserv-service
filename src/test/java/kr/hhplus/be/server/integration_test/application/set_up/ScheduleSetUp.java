@@ -2,9 +2,8 @@ package kr.hhplus.be.server.integration_test.application.set_up;
 
 import kr.hhplus.be.server.domain.concert.Concert;
 import kr.hhplus.be.server.domain.concert.Schedule;
-import kr.hhplus.be.server.domain.seat.Seat;
+import kr.hhplus.be.server.domain.concert.Seat;
 import kr.hhplus.be.server.infrastructure.schedule.ScheduleJpaRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
