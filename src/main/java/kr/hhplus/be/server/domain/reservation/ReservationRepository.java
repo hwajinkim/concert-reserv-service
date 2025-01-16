@@ -11,4 +11,6 @@ public interface ReservationRepository {
     Optional<Reservation> findByReservationIdAndSeatId(Long reservationId, Long seatId);
 
     List<Reservation> findExpiredReservation(LocalDateTime now);
+
+    Reservation findBySeatId(Long seatId);
 }

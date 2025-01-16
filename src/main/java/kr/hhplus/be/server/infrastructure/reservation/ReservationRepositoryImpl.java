@@ -28,4 +28,9 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     public List<Reservation> findExpiredReservation(LocalDateTime now) {
         return reservationJpaRepository.findExpiredReservation(now);
     }
+
+    @Override
+    public Reservation findBySeatId(Long seatId) {
+        return reservationJpaRepository.findBySeatId(seatId);
+    }
 }

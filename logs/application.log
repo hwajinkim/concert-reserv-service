@@ -13576,3 +13576,699 @@ Unconditional classes:
 }
 2025-01-17 02:28:38 [http-nio-8080-exec-1] INFO  k.h.b.server.common.filter.LogFilter - [90094894-7f8d-4245-8a06-55cbafa0fead] - Request [POST /api/v1/queues] completed in 260 ms
 2025-01-17 02:28:38 [http-nio-8080-exec-1] INFO  k.h.b.server.common.filter.LogFilter - [90094894-7f8d-4245-8a06-55cbafa0fead] response : {"statusCode":200,"success":"true","message":"유저 대기열 토큰 발급에 성공했습니다.","data":{"queueId":1,"userId":1,"queueStatus":"WAIT","createdAt":"2025-01-17T02:28:38.267226","expiredAt":"2025-01-17T02:38:38.264082"}} 
+2025-01-17 02:42:32 [main] INFO  k.h.b.s.i.a.UserConcurrencyIntegrationTest - Starting UserConcurrencyIntegrationTest using Java 17.0.10 with PID 55345 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 02:42:32 [main] INFO  k.h.b.s.i.a.UserConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 02:42:34 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 02:42:34 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 108 ms. Found 8 JPA repository interfaces.
+2025-01-17 02:42:34 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 02:42:34 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 02:42:35 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 02:42:35 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 02:42:35 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 02:42:35 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 02:42:35 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 02:42:35 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 02:42:36 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: ae3f3f6079b3aded6d3527855c64d723b41e6a13ed07c1100cf79c60441848b9
+2025-01-17 02:42:39 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT3.990834S
+2025-01-17 02:42:39 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 02:42:39 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 02:42:39 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 02:42:40 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 02:42:40 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 8a980ed99d568c6feb609731cc1105df996ee309247294bb763375d5d5fe6acd
+2025-01-17 02:42:41 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:52457/hhplus using query 'SELECT 1'
+2025-01-17 02:43:05 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT25.468623S
+2025-01-17 02:43:05 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:52457/hhplus)
+2025-01-17 02:43:06 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 02:43:06 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 02:43:06 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 02:43:07 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 02:43:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 02:43:07 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@52a605c3
+2025-01-17 02:43:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 02:43:07 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 02:43:09 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 02:43:09 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 02:43:10 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 02:43:12 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 02:43:14 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 02:43:14 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 02:43:14 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 02:43:14 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 39 ms
+2025-01-17 02:43:14 [main] INFO  k.h.b.s.i.a.UserConcurrencyIntegrationTest - Started UserConcurrencyIntegrationTest in 41.963 seconds (process running for 43.778)
+2025-01-17 02:43:15 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 02:43:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 02:43:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:12:28 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 58433 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:12:28 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:12:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:12:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 106 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:12:30 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:12:30 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:12:30 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:12:30 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:12:31 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:12:31 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:12:31 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:12:31 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:12:32 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 1be64c4c2595836f52e55522dc1255226a862b66f4c8e5311589af80bb7a84cb
+2025-01-17 03:12:34 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT2.717167S
+2025-01-17 03:12:34 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:12:34 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:12:34 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:12:34 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:12:34 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 87695a27c1828fccf3e70908b250ffa8f2b85b2702dff93df02bc5a28fb6990a
+2025-01-17 03:12:35 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:52920/hhplus using query 'SELECT 1'
+2025-01-17 03:12:59 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT25.435448S
+2025-01-17 03:12:59 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:52920/hhplus)
+2025-01-17 03:13:00 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:13:01 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:13:01 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:13:01 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:13:01 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:13:02 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@24fb8317
+2025-01-17 03:13:02 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:13:02 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:13:04 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:13:04 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:13:05 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:13:06 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:13:08 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:13:08 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:13:08 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:13:08 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 37 ms
+2025-01-17 03:13:08 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 40.564 seconds (process running for 42.488)
+2025-01-17 03:13:10 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:13:10 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:13:10 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:17:57 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 58974 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:17:57 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:17:58 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:17:58 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 114 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:17:58 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:17:58 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:17:58 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:17:59 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:17:59 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:17:59 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:17:59 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:17:59 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:18:00 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: b61c0d2ca395bc94f8d8c9b06efde8f655893f8ce0cb188b1f35e1ef9ba09884
+2025-01-17 03:18:01 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.566911S
+2025-01-17 03:18:01 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:18:01 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:18:01 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:18:01 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:18:01 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 8ab0214ee3732fdd452188a4ac10e7c73150cb4f684fd2b0b2adfaba9f3a0da8
+2025-01-17 03:18:02 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:53184/hhplus using query 'SELECT 1'
+2025-01-17 03:18:24 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT23.447651S
+2025-01-17 03:18:24 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:53184/hhplus)
+2025-01-17 03:18:25 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:18:25 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:18:25 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:18:26 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:18:26 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:18:26 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@24fb8317
+2025-01-17 03:18:26 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:18:26 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:18:28 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:18:28 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:18:29 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:18:34 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:18:40 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:18:40 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:18:40 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:18:40 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 115 ms
+2025-01-17 03:18:40 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 44.689 seconds (process running for 46.524)
+2025-01-17 03:18:44 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:18:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:18:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:33:46 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 60403 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:33:46 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:33:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:33:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 99 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:33:48 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:33:48 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:33:48 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:33:48 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:33:49 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:33:49 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:33:49 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:33:49 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:33:49 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: d4473e6d3f3515ef972b77c24d319ff46c7df08200dfb3c34cea610eaeaf25df
+2025-01-17 03:33:51 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT2.096296S
+2025-01-17 03:33:51 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:33:51 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:33:51 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:33:51 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:33:51 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 16012b1e95e2d095c786479380b63e3ac58e6339f80d8c57a6a0cf7771b69795
+2025-01-17 03:33:52 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:53522/hhplus using query 'SELECT 1'
+2025-01-17 03:34:18 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT27.41963S
+2025-01-17 03:34:18 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:53522/hhplus)
+2025-01-17 03:34:19 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:34:20 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:34:20 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:34:20 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:34:20 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:34:20 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@1002f859
+2025-01-17 03:34:20 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:34:21 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:34:22 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:34:23 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:34:23 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:34:26 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:34:30 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:34:30 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:34:30 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:34:30 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 96 ms
+2025-01-17 03:34:30 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 44.632 seconds (process running for 47.154)
+2025-01-17 03:34:32 [pool-2-thread-3] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:34:32 [pool-2-thread-2] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:34:32 [pool-2-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:34:32 [pool-2-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:34:32 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:34:32 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:34:32 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:50:40 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 61910 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:50:40 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:50:42 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:50:42 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:50:42 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:50:42 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:50:42 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:50:43 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:50:43 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:50:43 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:50:43 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:50:43 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:50:44 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 6ec88d23db3dda6a6d9d17347ccafe342e9967dd25c4205b9de749989f129d82
+2025-01-17 03:50:46 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT2.295578S
+2025-01-17 03:50:46 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:50:46 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:50:46 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:50:46 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:50:46 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: e5eccecbfbcdec496fcdba81204404c26e417411c3ff57f7fc516324a29e093f
+2025-01-17 03:50:47 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:53887/hhplus using query 'SELECT 1'
+2025-01-17 03:51:12 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT26.38749S
+2025-01-17 03:51:12 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:53887/hhplus)
+2025-01-17 03:51:13 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:51:13 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:51:13 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:51:14 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:51:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:51:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@1a22325d
+2025-01-17 03:51:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:51:14 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:51:16 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:51:16 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:51:16 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:51:19 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:51:20 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:51:20 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:51:20 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:51:20 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 37 ms
+2025-01-17 03:51:21 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 40.946 seconds (process running for 42.761)
+2025-01-17 03:51:23 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:51:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:51:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:53:12 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 62217 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:53:12 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:53:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:53:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 166 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:53:14 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:53:14 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:53:15 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:53:15 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:53:15 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:53:15 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:53:15 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:53:15 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:53:16 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 8a235b2a897cb80b46e965fff5600ec09c4cc4248637926163d3fdf62071dd12
+2025-01-17 03:53:17 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.606669S
+2025-01-17 03:53:17 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:53:17 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:53:17 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:53:17 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:53:17 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 1850f68cb2918b7137b6ce6af61b92575e0ce4ad9b5bc6a24662f62a35159e72
+2025-01-17 03:53:18 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:54131/hhplus using query 'SELECT 1'
+2025-01-17 03:53:40 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT22.614588S
+2025-01-17 03:53:40 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:54131/hhplus)
+2025-01-17 03:53:41 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:53:41 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:53:41 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:53:41 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:53:41 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:53:42 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d8b9dee
+2025-01-17 03:53:42 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:53:42 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:53:43 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:53:44 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:53:44 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:53:46 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:53:47 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:53:47 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:53:47 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:53:48 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 43 ms
+2025-01-17 03:53:48 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 36.16 seconds (process running for 38.046)
+2025-01-17 03:53:50 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:53:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:53:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:56:14 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 62512 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:56:14 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:56:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:56:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:56:16 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:56:16 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:56:16 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:56:17 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:56:17 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:56:17 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:56:17 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:56:17 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:56:18 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 48454952fc7645022213aae342454fe472751c670cc075a430c971aabdcb17b8
+2025-01-17 03:56:19 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.482597S
+2025-01-17 03:56:19 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:56:19 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:56:19 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:56:19 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:56:19 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 3651090d25189216f82920ccdb84ce862254b5d024816d9f40ec5770da4c5e09
+2025-01-17 03:56:20 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:54335/hhplus using query 'SELECT 1'
+2025-01-17 03:56:43 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT24.363091S
+2025-01-17 03:56:43 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:54335/hhplus)
+2025-01-17 03:56:44 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:56:44 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:56:44 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:56:45 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:56:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:56:45 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@24fb8317
+2025-01-17 03:56:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:56:46 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:56:47 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:56:48 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:56:48 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:56:50 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:56:52 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:56:52 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:56:52 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:56:52 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 36 ms
+2025-01-17 03:56:52 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 37.877 seconds (process running for 39.706)
+2025-01-17 03:56:53 [pool-2-thread-1] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:56:53 [pool-2-thread-3] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:56:53 [pool-2-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:56:53 [pool-2-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:56:53 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:56:53 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:56:53 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:57:24 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 62665 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:57:24 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:57:26 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:57:26 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 201 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:57:26 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:57:26 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:57:26 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:57:27 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:57:27 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:57:27 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:57:27 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:57:28 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:57:28 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 33596348ce2b6d61c7e37f94a07d7cc652462556afa67000845799a693a2a673
+2025-01-17 03:57:30 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT2.022221S
+2025-01-17 03:57:30 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:57:30 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:57:30 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:57:30 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:57:30 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: c2c63ee53236312d3e4975e476bbc569c5de4e5e4331abf6a90eda301705cc8e
+2025-01-17 03:57:31 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:54541/hhplus using query 'SELECT 1'
+2025-01-17 03:57:49 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT19.72937S
+2025-01-17 03:57:49 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:54541/hhplus)
+2025-01-17 03:57:50 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:57:51 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:57:51 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:57:52 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:57:52 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:57:52 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@2351255a
+2025-01-17 03:57:52 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:57:52 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:57:54 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:57:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:57:55 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:57:57 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:57:59 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:57:59 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:57:59 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:57:59 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 36 ms
+2025-01-17 03:57:59 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 35.905 seconds (process running for 37.9)
+2025-01-17 03:58:00 [pool-2-thread-1] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:00 [pool-2-thread-3] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:00 [pool-2-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:00 [pool-2-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:01 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:58:01 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:58:01 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:58:13 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 62739 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:58:13 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:58:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:58:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 109 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:58:15 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:58:15 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:58:15 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:58:15 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:58:16 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:58:16 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:58:16 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:58:16 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:58:16 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: c38b77081ec914925f1e6190922d2b4300c433ddf5ab631f8264bfb28c7d6ef8
+2025-01-17 03:58:17 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.117121S
+2025-01-17 03:58:17 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:58:17 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:58:17 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:58:17 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:58:17 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 558ecd3c796d145065f702fcfbc9c4bcacde76ebc86496270974c03d55a07c90
+2025-01-17 03:58:18 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:54715/hhplus using query 'SELECT 1'
+2025-01-17 03:58:36 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT18.745328S
+2025-01-17 03:58:36 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:54715/hhplus)
+2025-01-17 03:58:37 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 03:58:37 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 03:58:37 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 03:58:37 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 03:58:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 03:58:37 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f836d9
+2025-01-17 03:58:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 03:58:37 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 03:58:39 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 03:58:39 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:58:40 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 03:58:41 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 03:58:42 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 03:58:42 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 03:58:42 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 03:58:43 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 39 ms
+2025-01-17 03:58:43 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 30.067 seconds (process running for 32.121)
+2025-01-17 03:58:44 [pool-2-thread-1] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:44 [pool-2-thread-2] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:44 [pool-2-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:44 [pool-2-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 03:58:44 [pool-3-thread-2] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 03:58:44 [pool-3-thread-1] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 03:58:44 [pool-3-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 03:58:44 [pool-3-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 03:58:44 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 03:58:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 03:58:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 03:59:47 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 62899 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 03:59:47 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 03:59:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 03:59:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 105 ms. Found 8 JPA repository interfaces.
+2025-01-17 03:59:49 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 03:59:49 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 03:59:49 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 03:59:49 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 03:59:50 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 03:59:50 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 03:59:50 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 03:59:50 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 03:59:50 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 758995e53ea98af8ee043816ef4ffae623bda9f783962fa9cc309df9a22158f7
+2025-01-17 03:59:51 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.295063S
+2025-01-17 03:59:51 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 03:59:51 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 03:59:51 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 03:59:51 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 03:59:51 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: f3b9f32ee9bcaf6ae07e0722695d34ccb50457d0387c6623f1be2b478c359858
+2025-01-17 03:59:52 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:54893/hhplus using query 'SELECT 1'
+2025-01-17 04:00:10 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT18.507428S
+2025-01-17 04:00:10 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:54893/hhplus)
+2025-01-17 04:00:10 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 04:00:11 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 04:00:11 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 04:00:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 04:00:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 04:00:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@34525143
+2025-01-17 04:00:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 04:00:11 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 04:00:13 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 04:00:13 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 04:00:13 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 04:00:15 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 04:00:17 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 04:00:17 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 04:00:17 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 04:00:17 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 38 ms
+2025-01-17 04:00:17 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 30.036 seconds (process running for 31.684)
+2025-01-17 04:00:18 [pool-2-thread-1] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:00:18 [pool-2-thread-3] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:00:18 [pool-2-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:00:18 [pool-2-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:00:18 [pool-3-thread-3] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:00:18 [pool-3-thread-1] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:00:18 [pool-3-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:00:18 [pool-3-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:00:19 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 04:00:19 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 04:00:19 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 04:06:35 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Starting ReservationConcurrencyIntegrationTest using Java 17.0.10 with PID 63578 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 04:06:35 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 04:06:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 04:06:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 112 ms. Found 8 JPA repository interfaces.
+2025-01-17 04:06:37 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 04:06:37 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 04:06:37 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 04:06:37 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 04:06:38 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 04:06:38 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 04:06:38 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 04:06:38 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 04:06:38 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 7d85792306700cb935c1bf44a24a2c60f2a8504b93db449ce5ed969ec3d15fef
+2025-01-17 04:06:40 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.91598S
+2025-01-17 04:06:40 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 04:06:40 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 04:06:40 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 04:06:40 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 04:06:40 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 37857fe2ab05cac5a98b8d3b3a31133f6d0fdf8beee6ada75e4b768aa6fa067b
+2025-01-17 04:06:40 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:55103/hhplus using query 'SELECT 1'
+2025-01-17 04:07:01 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT21.593433S
+2025-01-17 04:07:01 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:55103/hhplus)
+2025-01-17 04:07:02 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 04:07:03 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 04:07:03 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 04:07:03 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 04:07:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 04:07:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@f09c282
+2025-01-17 04:07:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 04:07:04 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 04:07:05 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 04:07:06 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 04:07:06 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 04:07:08 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 04:07:10 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 04:07:10 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 04:07:10 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 04:07:10 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 36 ms
+2025-01-17 04:07:10 [main] INFO  k.h.b.s.i.a.ReservationConcurrencyIntegrationTest - Started ReservationConcurrencyIntegrationTest in 35.727 seconds (process running for 37.665)
+2025-01-17 04:07:11 [pool-2-thread-3] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:07:11 [pool-2-thread-2] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:07:11 [pool-2-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:07:11 [pool-2-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#8]
+2025-01-17 04:07:11 [pool-3-thread-3] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:07:11 [pool-3-thread-1] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:07:11 [pool-3-thread-4] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:07:11 [pool-3-thread-5] INFO  o.h.c.s.AbstractPersistentCollection - HHH000496: Detaching an uninitialized collection with queued operations from a session: [kr.hhplus.be.server.domain.concert.Schedule.seats#11]
+2025-01-17 04:07:12 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 04:07:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 04:07:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
+2025-01-17 04:08:29 [main] INFO  k.h.b.s.i.a.ReservationFacadeIntegrationTest - Starting ReservationFacadeIntegrationTest using Java 17.0.10 with PID 63762 (started by hwa.j in /Users/hwa.j/IdeaProjects/server-java)
+2025-01-17 04:08:29 [main] INFO  k.h.b.s.i.a.ReservationFacadeIntegrationTest - The following 1 profile is active: "test"
+2025-01-17 04:08:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-17 04:08:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 110 ms. Found 8 JPA repository interfaces.
+2025-01-17 04:08:31 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-01-17 04:08:31 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-01-17 04:08:31 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.4
+2025-01-17 04:08:31 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2025-01-17 04:08:32 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/hwa.j/.docker/run/docker.sock)
+2025-01-17 04:08:32 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-01-17 04:08:32 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 3913 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/hwa.j/Library/Containers/com.docker.docker/Data/docker-cli.sock
+2025-01-17 04:08:32 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Creating container for image: testcontainers/ryuk:0.11.0
+2025-01-17 04:08:32 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 is starting: 6836d41152fb8c524d4345c264d186f89c3c8311af0aca855e3eddc6d7f0f64c
+2025-01-17 04:08:33 [main] INFO  tc.testcontainers/ryuk:0.11.0 - Container testcontainers/ryuk:0.11.0 started in PT1.378388S
+2025-01-17 04:08:33 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-01-17 04:08:33 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-01-17 04:08:33 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-01-17 04:08:33 [main] INFO  tc.mysql:8.0 - Creating container for image: mysql:8.0
+2025-01-17 04:08:33 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 is starting: 23af7c8dd046de4376216eaecc81d0097755084e83c61e349ee90d19c0e48f9b
+2025-01-17 04:08:34 [main] INFO  tc.mysql:8.0 - Waiting for database connection to become available at jdbc:mysql://localhost:55307/hhplus using query 'SELECT 1'
+2025-01-17 04:09:02 [main] INFO  tc.mysql:8.0 - Container mysql:8.0 started in PT28.609202S
+2025-01-17 04:09:02 [main] INFO  tc.mysql:8.0 - Container is started (JDBC URL: jdbc:mysql://localhost:55307/hhplus)
+2025-01-17 04:09:03 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-17 04:09:03 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-17 04:09:03 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-01-17 04:09:03 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-17 04:09:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Starting...
+2025-01-17 04:09:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HangHaePlusDataSource - Added connection com.mysql.cj.jdbc.ConnectionImpl@344cf00f
+2025-01-17 04:09:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Start completed.
+2025-01-17 04:09:04 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HangHaePlusDataSource)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-17 04:09:05 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-17 04:09:06 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 04:09:06 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-17 04:09:08 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-01-17 04:09:10 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-01-17 04:09:10 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-01-17 04:09:10 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-17 04:09:10 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 35 ms
+2025-01-17 04:09:10 [main] INFO  k.h.b.s.i.a.ReservationFacadeIntegrationTest - Started ReservationFacadeIntegrationTest in 41.368 seconds (process running for 43.065)
+2025-01-17 04:09:12 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-17 04:09:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown initiated...
+2025-01-17 04:09:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HangHaePlusDataSource - Shutdown completed.
