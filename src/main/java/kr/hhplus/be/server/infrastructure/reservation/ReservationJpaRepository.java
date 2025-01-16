@@ -14,7 +14,10 @@ import java.util.Optional;
 
 @Repository
 public interface ReservationJpaRepository extends JpaRepository<Reservation, Long> {
-    Optional<Reservation> findByIdAndSeatId(Long id, Long seatId);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT r FROM Reservation r WHERE r.id = :reservationId AND r.seatId = :seatId")
+    Optional<Reservation> findByReservationIdAndSeatIdWithLock(@Param("reservationId") Long reservationId, @Param("seatId") Long seatId);
 
     @Query("SELECT r FROM Reservation r WHERE r.expiredAt < :now")
     List<Reservation> findExpiredReservation(@Param("now") LocalDateTime now);

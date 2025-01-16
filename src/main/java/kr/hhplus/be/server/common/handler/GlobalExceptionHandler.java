@@ -65,8 +65,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(AlreadyExistsReservationException.class)
-    public ResponseEntity<ErrorResponse> handleAlreadyExistsReservationException(AlreadyExistsReservationException ex){
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleAlreadyExistsException(AlreadyExistsException ex){
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }

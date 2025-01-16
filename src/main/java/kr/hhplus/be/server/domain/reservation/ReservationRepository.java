@@ -8,7 +8,7 @@ public interface ReservationRepository {
 
     Reservation save(Reservation createdReservation);
 
-    Optional<Reservation> findByReservationIdAndSeatId(Long reservationId, Long seatId);
+    Optional<Reservation> findByReservationIdAndSeatIdWithLock(Long reservationId, Long seatId);
 
     List<Reservation> findExpiredReservation(LocalDateTime now);
 
