@@ -1,60 +1,48 @@
-package kr.hhplus.be.server.integration_test.inter;
+package kr.hhplus.be.server.integration_test.application;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import kr.hhplus.be.server.application.dto.payment.PaymentParam;
+import kr.hhplus.be.server.application.dto.payment.PaymentResult;
+import kr.hhplus.be.server.application.payment.PaymentFacade;
 import kr.hhplus.be.server.domain.concert.Concert;
 import kr.hhplus.be.server.domain.concert.Schedule;
+import kr.hhplus.be.server.domain.queue.Queue;
+import kr.hhplus.be.server.domain.queue.QueueStatus;
 import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationState;
 import kr.hhplus.be.server.domain.seat.Seat;
 import kr.hhplus.be.server.domain.seat.SeatStatus;
 import kr.hhplus.be.server.domain.user.User;
-import kr.hhplus.be.server.integration_test.inter.set_up.ConcertSetUp;
-import kr.hhplus.be.server.integration_test.inter.set_up.ReservationSetUp;
-import kr.hhplus.be.server.integration_test.inter.set_up.ScheduleSetUp;
-import kr.hhplus.be.server.integration_test.inter.set_up.UserSetUp;
-import kr.hhplus.be.server.interfaces.api.dto.payment.PaymentRequest;
-import org.hamcrest.Matchers;
+import kr.hhplus.be.server.integration_test.application.set_up.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class PaymentIntegrationControllerTest extends BaseIntegrationTest{
+public class PaymentFacadeIntegrationTest extends BaseIntegrationTest{
 
     @Autowired
-    private WebApplicationContext context;
-
+    private PaymentFacade paymentFacade;
     @Autowired
     private UserSetUp userSetUp;
+    @Autowired
+    private QueueSetUp queueSetUp;
     @Autowired
     private ConcertSetUp concertSetUp;
     @Autowired
     private ScheduleSetUp scheduleSetUp;
-
     @Autowired
     private ReservationSetUp reservationSetUp;
-
     private List<Schedule> scheduleList;
-
     private List<Seat> seatList;
 
     @BeforeEach
-    public void setup() {
-        // MockMvc 초기화
-        mvc = MockMvcBuilders.webAppContextSetup(context).build();
+    void setup() {
         scheduleList = List.of(
                 Schedule.builder()
                         .price(BigDecimal.valueOf(10000.00))
@@ -87,15 +75,14 @@ public class PaymentIntegrationControllerTest extends BaseIntegrationTest{
     }
 
     @Test
-    void 결제_신청() throws Exception {
+    void 결제_신청(){
         //given
-        // 사용자 저장
         User user = userSetUp.saveUser("김화진", BigDecimal.valueOf(50000.00));
 
-        // 콘서트 & 스케줄 저장
+        Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
+
         Concert concert = concertSetUp.saveConcert("Awesome Concert", scheduleList);
 
-        // 스케줄 & 좌석 저장
         Schedule schedule = scheduleSetUp.saveSchedule(
                 BigDecimal.valueOf(50000.00),
                 LocalDateTime.of(2025,1,15,20,0,0),
@@ -103,7 +90,6 @@ public class PaymentIntegrationControllerTest extends BaseIntegrationTest{
                 LocalDateTime.of(2025,1,10,18,0,0),
                 50, 100, concert, seatList);
 
-        // 예약 저장
         Reservation reservation = reservationSetUp.saveReservation(
                 user.getId(),
                 schedule.getSeats().get(0).getId(),
@@ -111,23 +97,10 @@ public class PaymentIntegrationControllerTest extends BaseIntegrationTest{
                 schedule.getSeats().get(0).getSeatPrice(),
                 LocalDateTime.now().plusMinutes(5)
         );
-
-        PaymentRequest paymentRequest = new PaymentRequest(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId());
-
         //when
-        ResultActions resultActions = mvc.perform(post("/api/v1/payments")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(paymentRequest))
-                        .accept(MediaType.APPLICATION_JSON))
-                .andDo(print());
-
+        PaymentParam paymentParam = new PaymentParam(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queue.getId());
+        PaymentResult paymentResult = paymentFacade.createPayment(paymentParam);
         //then
-        resultActions
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("success", Matchers.is("true")))
-                .andExpect(jsonPath("message", Matchers.is("결제에 성공했습니다.")))
-                .andExpect(jsonPath("data", Matchers.is(notNullValue())));
-
+        assertNotNull(paymentResult);
     }
-
 }

@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.integration_test.inter;
+package kr.hhplus.be.server.integration_test.application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Disabled;

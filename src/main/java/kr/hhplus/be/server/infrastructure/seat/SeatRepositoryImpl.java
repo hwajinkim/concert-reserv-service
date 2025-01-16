@@ -14,11 +14,6 @@ public class SeatRepositoryImpl implements SeatRepository {
 
     private final SeatJpaRepository seatJpaRepository;
     @Override
-    public List<Seat> findAvailableSeatsByScheduleId(Long scheduleId) {
-        return seatJpaRepository.findAvailableSeatsByScheduleId(scheduleId);
-    }
-
-    @Override
     public Optional<Seat> findById(Long seatId) {
         return seatJpaRepository.findById(seatId);
     }
@@ -31,5 +26,10 @@ public class SeatRepositoryImpl implements SeatRepository {
     @Override
     public Optional<Object> findScheduleIdBySeatId(Long seatId) {
         return seatJpaRepository.findScheduleIdBySeatId(seatId);
+    }
+
+    @Override
+    public Optional<Seat> findByIdWithLock(Long seatId) {
+        return seatJpaRepository.findByIdWithLock(seatId);
     }
 }

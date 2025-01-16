@@ -49,6 +49,7 @@ public class Queue extends BaseEntity {
         return Queue.builder()
                 .userId(userId)
                 .queueStatus(QueueStatus.WAIT)
+                .expiredAt(LocalDateTime.now().plusMinutes(10))
                 .build();
     }
 
@@ -60,5 +61,9 @@ public class Queue extends BaseEntity {
                 .expiredAt(LocalDateTime.now())
                 .removedAt(LocalDateTime.now())
                 .build();
+    }
+
+    public void setStatus(QueueStatus queueStatus) {
+        this.queueStatus = queueStatus;
     }
 }

@@ -10,9 +10,11 @@ public record QueueTokenResponse(
         Long queueId,
         Long userId,
         QueueStatus queueStatus,
-        LocalDateTime createdAt
+        LocalDateTime createdAt,
+
+        LocalDateTime expiredAt
 ){
     public static QueueTokenResponse from(QueueTokenResult queueTokenResult){
-        return new QueueTokenResponse(queueTokenResult.queueId(), queueTokenResult.userId(), queueTokenResult.queueStatus(), queueTokenResult.createdAt());
+        return new QueueTokenResponse(queueTokenResult.queueId(), queueTokenResult.userId(), queueTokenResult.queueStatus(), queueTokenResult.createdAt(), queueTokenResult.expiredAt());
     }
 }

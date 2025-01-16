@@ -9,4 +9,6 @@ public interface ScheduleRepository{
     Optional<Schedule> findById(Long scheduleId);
 
     Schedule save(Schedule schedule);
+
+    Optional<Schedule> findScheduleWithAvailableSeat(Long scheduleId);
 }

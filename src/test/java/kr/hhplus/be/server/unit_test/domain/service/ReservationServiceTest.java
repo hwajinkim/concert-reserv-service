@@ -1,6 +1,7 @@
 package kr.hhplus.be.server.unit_test.domain.service;
 
 import kr.hhplus.be.server.common.exception.ReservationNotFoundException;
+import kr.hhplus.be.server.domain.dto.ReservationCheckResult;
 import kr.hhplus.be.server.domain.reservation.Reservation;
 import kr.hhplus.be.server.domain.reservation.ReservationRepository;
 import kr.hhplus.be.server.domain.reservation.ReservationService;
@@ -15,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -80,15 +82,22 @@ public class ReservationServiceTest {
         //given
         Long userId = 1L;
         Long reservationId = 1L;
+        Long seatId = 1L;
         Seat mockSeat = Seat.builder()
-                .seatId(1L)
+                .seatId(seatId)
                 .seatNumber(1)
                 .seatStatus(SeatStatus.OCCUPIED)
                 .seatPrice(BigDecimal.valueOf(10000.00))
                 .schedule(null)
                 .build();
 
-        ReservationState reservationState = ReservationState.CANCELLED;
+        Reservation mockReservation = Reservation.builder()
+                .userId(userId)
+                .seatId(mockSeat.getId())
+                .reservationState(ReservationState.PANDING)
+                .seatPrice(mockSeat.getSeatPrice())
+                .expiredAt(LocalDateTime.now().plusMinutes(5))
+                .build();
 
         Reservation updatedReservation = Reservation.builder()
                 .userId(userId)
@@ -98,11 +107,12 @@ public class ReservationServiceTest {
                 .expiredAt(null)
                 .build();
 
+        when(reservationRepository.findByReservationIdAndSeatId(reservationId, seatId)).thenReturn(Optional.of(mockReservation));
         when(reservationRepository.save(any(Reservation.class))).thenReturn(updatedReservation);
         //when
-        Reservation reservation = reservationService.updateSeatReservation(mockSeat, reservationId, userId, reservationState);
+        ReservationCheckResult reservationCheckResult = reservationService.checkReservationExpiration(reservationId, seatId);
         //then
-        assertEquals(ReservationState.CANCELLED, reservation.getReservationState());
+        assertEquals(ReservationState.CANCELLED, reservationCheckResult.reservation().getReservationState());
     }
 
     @Test
@@ -110,15 +120,23 @@ public class ReservationServiceTest {
         //given
         Long userId = 1L;
         Long reservationId = 1L;
+        Long seatId = 1L;
+
         Seat mockSeat = Seat.builder()
-                .seatId(1L)
+                .seatId(seatId)
                 .seatNumber(1)
                 .seatStatus(SeatStatus.OCCUPIED)
                 .seatPrice(BigDecimal.valueOf(10000.00))
                 .schedule(null)
                 .build();
 
-        ReservationState reservationState = ReservationState.PAID;
+        Reservation mockReservation = Reservation.builder()
+                .userId(userId)
+                .seatId(mockSeat.getId())
+                .reservationState(ReservationState.PANDING)
+                .seatPrice(mockSeat.getSeatPrice())
+                .expiredAt(LocalDateTime.now().plusMinutes(5))
+                .build();
 
         Reservation updatedReservation = Reservation.builder()
                 .userId(userId)
@@ -128,10 +146,11 @@ public class ReservationServiceTest {
                 .expiredAt(null)
                 .build();
 
+        when(reservationRepository.findByReservationIdAndSeatId(reservationId, seatId)).thenReturn(Optional.of(mockReservation));
         when(reservationRepository.save(any(Reservation.class))).thenReturn(updatedReservation);
         //when
-        Reservation reservation = reservationService.updateSeatReservation(mockSeat, reservationId, userId, reservationState);
+        ReservationCheckResult reservationCheckResult = reservationService.checkReservationExpiration(reservationId, seatId);
         //then
-        assertEquals(ReservationState.PAID, reservation.getReservationState());
+        assertEquals(ReservationState.PAID, reservationCheckResult.reservation().getReservationState());
     }
 }

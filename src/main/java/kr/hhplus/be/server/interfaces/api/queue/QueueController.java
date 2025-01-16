@@ -31,8 +31,8 @@ public class QueueController {
         QueueTokenParam queueTokenParam = QueueTokenParam.from(queueTokenRequest);
         QueueTokenResponse queueTokenResponse = QueueTokenResponse.from(queueFacade.createQueueToken(queueTokenParam));
 
-        response.setHeader("Queue-Token", String.valueOf(queueTokenResponse.userId()));
         response.setHeader("Queue-Token-Queue-Id", String.valueOf(queueTokenResponse.queueId()));
+        response.setHeader("Queue-Token-User-Id", String.valueOf(queueTokenResponse.userId()));
 
         return ApiResponse.success(ResponseCode.TOKEN_CREATE_SUCCESS.getMessage(), queueTokenResponse);
     }

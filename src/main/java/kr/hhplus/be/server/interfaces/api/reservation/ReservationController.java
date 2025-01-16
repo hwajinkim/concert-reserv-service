@@ -24,7 +24,7 @@ public class ReservationController {
     // 예약 API
     @Operation(summary = "좌석 예약 신청")
     @PostMapping("/reservations")
-    public ApiResponse<ReservationResponse> createSeatReservation(@RequestHeader(value = "Queue-Token", required = false) Long tokenUserId, @RequestBody ReservationRequest reservationRequest){
+    public ApiResponse<ReservationResponse> createSeatReservation(@RequestHeader(value = "Queue-Token-User-Id", required = false) Long tokenUserId, @RequestBody ReservationRequest reservationRequest){
 
         ReservationRequest updatedRequest = ReservationRequest.withUserId(tokenUserId, reservationRequest);
         ReservationParam reservationParam = ReservationParam.from(updatedRequest);

@@ -9,23 +9,27 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class QueueService {
 
     private final QueueRepository queueRepository;
-    @Transactional
+
     public Queue createQueueToken(Long userId) {
         Queue queue = new Queue();
         Queue createdQueue = queue.create(userId);
-        Queue savedQueue = queueRepository.save(createdQueue);
-        return savedQueue;
+        return queueRepository.save(createdQueue);
     }
 
-    public Queue findByUserId(Long userId) {
-        return queueRepository.findByUserId(userId);
+    public Queue findById(Long tokenQueueId) {
+        return queueRepository.findById(tokenQueueId)
+                .orElseThrow(()-> new QueueNotFoundException("유저 대기열 토큰을 찾을 수 없습니다."));
     }
-
 
     @Transactional
     public Queue updateQueue(Long queueId) {
@@ -34,5 +38,23 @@ public class QueueService {
 
         Queue updatedQueue = findQueue.update(findQueue);
         return queueRepository.save(updatedQueue);
+    }
+
+    @Transactional
+    public void activeToken() {
+        List<Queue> pendingQueues = queueRepository.findTopNByWaitStatusOrderByCreatedAt("WAIT", 10);
+
+        List<Long> queueIds = pendingQueues.stream()
+                .map(Queue::getId)
+                .collect(Collectors.toList());
+
+        // 활성 상태로 업데이트
+        queueRepository.updateQueueStatus(QueueStatus.ACTIVE, queueIds);
+    }
+
+    @Transactional
+    public int deleteToken() {
+        LocalDateTime now = LocalDateTime.now();
+        return queueRepository.deleteExpiredTokens(now);
     }
 }

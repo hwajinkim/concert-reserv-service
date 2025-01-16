@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SeatRepository {
-    List<Seat> findAvailableSeatsByScheduleId(Long scheduleId);
 
     Optional<Seat> findById(Long seatId);
 
@@ -15,4 +14,6 @@ public interface SeatRepository {
     Seat save(Seat updatedSeat);
 
     Optional<Object> findScheduleIdBySeatId(Long seatId);
+
+    Optional<Seat> findByIdWithLock(Long seatId);
 }

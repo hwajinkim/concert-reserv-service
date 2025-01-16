@@ -1,15 +1,11 @@
 package kr.hhplus.be.server.domain.user;
 
-import kr.hhplus.be.server.application.dto.user.UserBalanceParam;
 import kr.hhplus.be.server.common.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.swing.text.html.Option;
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -28,8 +24,9 @@ public class UserService {
 
     @Transactional
     public User charge(Long userId, BigDecimal amount) {
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByIdWithPessimisticLock(userId)
                 .orElseThrow(()-> new UserNotFoundException("사용자의 정보가 없습니다."));
+
         BigDecimal balanceBefore = user.getPointBalance();
 
         User userUpdate = user.charge(amount);
