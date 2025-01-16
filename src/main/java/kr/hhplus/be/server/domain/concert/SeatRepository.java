@@ -1,9 +1,7 @@
-package kr.hhplus.be.server.domain.seat;
+package kr.hhplus.be.server.domain.concert;
 
-import kr.hhplus.be.server.domain.concert.Schedule;
+import kr.hhplus.be.server.domain.concert.Seat;
 
-import javax.swing.text.html.Option;
-import java.util.List;
 import java.util.Optional;
 
 public interface SeatRepository {

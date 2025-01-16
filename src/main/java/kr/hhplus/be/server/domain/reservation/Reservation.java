@@ -2,7 +2,7 @@ package kr.hhplus.be.server.domain.reservation;
 
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
-import kr.hhplus.be.server.domain.seat.Seat;
+import kr.hhplus.be.server.domain.concert.Seat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
