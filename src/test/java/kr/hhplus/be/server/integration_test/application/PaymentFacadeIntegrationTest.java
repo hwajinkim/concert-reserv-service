@@ -79,7 +79,7 @@ public class PaymentFacadeIntegrationTest extends BaseIntegrationTest{
         //given
         User user = userSetUp.saveUser("김화진", BigDecimal.valueOf(50000.00));
 
-        Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT);
+        Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
 
         Concert concert = concertSetUp.saveConcert("Awesome Concert", scheduleList);
 

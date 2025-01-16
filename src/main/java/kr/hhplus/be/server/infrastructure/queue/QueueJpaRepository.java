@@ -28,4 +28,7 @@ public interface QueueJpaRepository extends JpaRepository<Queue,Long> {
     @Modifying
     @Query("DELETE FROM Queue t WHERE t.expiredAt < :now")
     int deleteExpiredTokens(@Param("now") LocalDateTime now);
+
+    @Query(value = "SELECT * FROM queue WHERE queue_status = :queueStatus ORDER BY created_at ASC", nativeQuery = true)
+    List<Queue> findTopNByActiveStatusOrderByCreatedAt(@Param("queueStatus") String queueStatus);
 }

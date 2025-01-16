@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -58,7 +59,7 @@ public class QueueFacadeIntegrationTest extends BaseIntegrationTest{
     void 인터셉터에서_토큰_검증했을_때_유효함(){
         //given
         User savedUser = userSetUp.saveUser("김화진", BigDecimal.valueOf(50000.00));
-        Queue savedQueue = queueSetUp.saveQueue(savedUser.getId(), QueueStatus.ACTIVE);
+        Queue savedQueue = queueSetUp.saveQueue(savedUser.getId(), QueueStatus.ACTIVE, LocalDateTime.now().plusMinutes(10));
 
         //when
         Boolean result = queueFacade.isQueueValidToken(String.valueOf(savedQueue.getId()));

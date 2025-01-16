@@ -35,6 +35,11 @@ public class QueueRepositoryImpl implements QueueRepository {
     }
 
     @Override
+    public List<Queue> findTopNByActiveStatusOrderByCreatedAt(String queueStatus) {
+        return queueJpaRepository.findTopNByActiveStatusOrderByCreatedAt(queueStatus);
+    }
+
+    @Override
     public void updateQueueStatus(QueueStatus queueStatus, List<Long> queueIds) {
         queueJpaRepository.updateQueueStatus(queueStatus, queueIds);
     }

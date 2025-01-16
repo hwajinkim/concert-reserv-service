@@ -53,8 +53,8 @@ public class QueueService {
     }
 
     @Transactional
-    public void deleteToken() {
+    public int deleteToken() {
         LocalDateTime now = LocalDateTime.now();
-        queueRepository.deleteExpiredTokens(now);
+        return queueRepository.deleteExpiredTokens(now);
     }
 }

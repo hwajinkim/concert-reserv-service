@@ -13,6 +13,8 @@ public interface QueueRepository {
 
     List<Queue> findTopNByWaitStatusOrderByCreatedAt(String queueStatus, int limit);
 
+    List<Queue> findTopNByActiveStatusOrderByCreatedAt(String queueStatus);
+
     void updateQueueStatus(QueueStatus queueStatus, List<Long> queueIds);
 
     int deleteExpiredTokens(LocalDateTime now);
