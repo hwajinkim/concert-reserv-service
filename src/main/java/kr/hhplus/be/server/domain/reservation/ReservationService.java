@@ -3,15 +3,11 @@ package kr.hhplus.be.server.domain.reservation;
 import kr.hhplus.be.server.common.exception.MissingExpiryTimeException;
 import kr.hhplus.be.server.common.exception.ReservationExpiredException;
 import kr.hhplus.be.server.common.exception.ReservationNotFoundException;
-import kr.hhplus.be.server.common.exception.SeatNotFoundException;
 import kr.hhplus.be.server.domain.dto.ReservationCheckResult;
-import kr.hhplus.be.server.domain.seat.Seat;
-import kr.hhplus.be.server.domain.seat.SeatRepository;
-import kr.hhplus.be.server.domain.seat.SeatStatus;
+import kr.hhplus.be.server.domain.concert.Seat;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -48,6 +44,8 @@ public class ReservationService {
                 updatedReservation = new Reservation().update(reservation.getId(), reservation.getSeatId(), reservation.getUserId(), ReservationState.PAID, reservation.getSeatPrice());
                 result = false;
             }
+        } else {
+            throw new MissingExpiryTimeException("예약에 만료 시간이 설정되지 않았습니다.");
         }
         return new ReservationCheckResult(result, reservationRepository.save(updatedReservation));
     }

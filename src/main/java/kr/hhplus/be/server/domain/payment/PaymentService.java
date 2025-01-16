@@ -2,9 +2,8 @@ package kr.hhplus.be.server.domain.payment;
 
 import kr.hhplus.be.server.domain.concert.Schedule;
 import kr.hhplus.be.server.domain.reservation.Reservation;
-import kr.hhplus.be.server.domain.seat.Seat;
+import kr.hhplus.be.server.domain.concert.Seat;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

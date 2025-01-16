@@ -1,11 +1,10 @@
 package kr.hhplus.be.server.infrastructure.seat;
 
-import kr.hhplus.be.server.domain.seat.Seat;
-import kr.hhplus.be.server.domain.seat.SeatRepository;
+import kr.hhplus.be.server.domain.concert.Seat;
+import kr.hhplus.be.server.domain.concert.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component

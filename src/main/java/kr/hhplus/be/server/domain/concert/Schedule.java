@@ -2,14 +2,12 @@ package kr.hhplus.be.server.domain.concert;
 
 import jakarta.persistence.*;
 import kr.hhplus.be.server.domain.common.BaseEntity;
-import kr.hhplus.be.server.domain.seat.Seat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
