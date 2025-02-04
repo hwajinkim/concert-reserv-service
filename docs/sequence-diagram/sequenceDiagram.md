@@ -171,7 +171,7 @@ sequenceDiagram
     title 잔액 조회 프로세스
     actor 사용자 as 사용자
     participant UserFacade as 사용자 파사드
-    participant UserService as 사용자 서비스
+    participant  as 사용자 서비스
 
     사용자->>+UserFacade: 잔액 조회 요청 (사용자 ID)
     UserFacade->>+UserService: 사용자 ID로 잔액 조회
