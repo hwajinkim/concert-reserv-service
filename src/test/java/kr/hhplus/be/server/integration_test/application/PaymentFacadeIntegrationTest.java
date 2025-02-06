@@ -14,6 +14,7 @@ import kr.hhplus.be.server.domain.reservation.ReservationState;
 import kr.hhplus.be.server.domain.concert.Seat;
 import kr.hhplus.be.server.domain.concert.SeatStatus;
 import kr.hhplus.be.server.domain.user.User;
+import kr.hhplus.be.server.infrastructure.queue.QueueRedisRepositoryImpl;
 import kr.hhplus.be.server.integration_test.application.set_up.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,6 +41,10 @@ public class PaymentFacadeIntegrationTest extends BaseIntegrationTest{
     private ScheduleSetUp scheduleSetUp;
     @Autowired
     private ReservationSetUp reservationSetUp;
+
+    @Autowired
+    private QueueRedisRepositoryImpl queueRedisRepository;
+
     private List<Schedule> scheduleList;
     private List<Seat> seatList;
 
@@ -80,7 +86,9 @@ public class PaymentFacadeIntegrationTest extends BaseIntegrationTest{
         //given
         User user = userSetUp.saveUser("김화진", BigDecimal.valueOf(50000.00));
 
-        Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
+        //Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
+
+        String queueId = UUID.randomUUID().toString();
 
         Concert concert = concertSetUp.saveConcert("Awesome Concert", scheduleList);
 
@@ -99,7 +107,7 @@ public class PaymentFacadeIntegrationTest extends BaseIntegrationTest{
                 LocalDateTime.now().plusMinutes(5)
         );
         //when
-        PaymentParam paymentParam = new PaymentParam(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queue.getId());
+        PaymentParam paymentParam = new PaymentParam(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queueId);
         PaymentResult paymentResult = paymentFacade.createPayment(paymentParam);
         //then
         assertNotNull(paymentResult);
@@ -110,7 +118,8 @@ public class PaymentFacadeIntegrationTest extends BaseIntegrationTest{
         //given
         User user = userSetUp.saveUser("김화진", BigDecimal.valueOf(50000.00));
 
-        Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
+        //Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
+        String queueId = UUID.randomUUID().toString();
 
         Concert concert = concertSetUp.saveConcert("Awesome Concert", scheduleList);
 
@@ -129,7 +138,7 @@ public class PaymentFacadeIntegrationTest extends BaseIntegrationTest{
                 LocalDateTime.now().plusMinutes(5)
         );
         //when & then
-        PaymentParam paymentParam = new PaymentParam(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queue.getId());
+        PaymentParam paymentParam = new PaymentParam(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queueId);
         Exception exception = assertThrows(ReservationBadStatusException.class,
                 ()-> paymentFacade.createPayment(paymentParam));
 
