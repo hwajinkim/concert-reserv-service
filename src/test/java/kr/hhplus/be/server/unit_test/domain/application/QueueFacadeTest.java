@@ -2,6 +2,7 @@ package kr.hhplus.be.server.unit_test.domain.application;
 
 import kr.hhplus.be.server.application.dto.queue.QueueTokenParam;
 import kr.hhplus.be.server.application.dto.queue.QueueTokenResult;
+import kr.hhplus.be.server.application.dto.queue.RedisQueueTokenResult;
 import kr.hhplus.be.server.application.queue.QueueFacade;
 import kr.hhplus.be.server.common.exception.UserNotFoundException;
 import kr.hhplus.be.server.domain.queue.Queue;
@@ -18,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,17 +62,13 @@ public class QueueFacadeTest {
                 .pointBalance(BigDecimal.valueOf(10000.00))
                 .build();
 
-        Queue mockQueue = Queue.builder()
-                .id(1L)
-                .userId(userId)
-                .queueStatus(QueueStatus.WAIT)
-                .build();
+        String tokenId = UUID.randomUUID().toString();
 
         when(userService.findById(userId)).thenReturn(mockUser);
-        when(queueService.createQueueToken(userId)).thenReturn(mockQueue);
+        when(queueService.createQueueToken(userId)).thenReturn(tokenId);
         //when
-        QueueTokenResult queueTokenResult = queueFacade.createQueueToken(queueTokenParam);
+        RedisQueueTokenResult redisQueueTokenResult = queueFacade.createQueueToken(queueTokenParam);
         //then
-        assertEquals(queueTokenResult.queueId(), mockQueue.getId());
+        assertEquals(redisQueueTokenResult.tokenId(), tokenId);
     }
 }
