@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -18,43 +21,63 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class QueueService {
 
-    private final QueueRepository queueRepository;
+    private final QueueRedisRepository queueRedisRepository;
 
-    public Queue createQueueToken(Long userId) {
-        Queue queue = new Queue();
-        Queue createdQueue = queue.create(userId);
-        return queueRepository.save(createdQueue);
+    public String createQueueToken(Long userId) {
+        return queueRedisRepository.createWaitingQueue(userId);
     }
 
-    public Queue findById(Long tokenQueueId) {
-        return queueRepository.findById(tokenQueueId)
-                .orElseThrow(()-> new QueueNotFoundException("유저 대기열 토큰을 찾을 수 없습니다."));
+    public Boolean findById(String tokenId) {
+        Boolean isMember =  queueRedisRepository.isTokenActive(tokenId);
+        return Boolean.TRUE.equals(isMember);
     }
 
-    @Transactional
-    public Queue updateQueue(Long queueId) {
-        Queue findQueue = queueRepository.findById(queueId)
-                .orElseThrow(()-> new QueueNotFoundException("유저 대기열 토큰을 찾을 수 없습니다."));
-
-        Queue updatedQueue = findQueue.update(findQueue);
-        return queueRepository.save(updatedQueue);
+    public void removeQueue(String tokenId) {
+        queueRedisRepository.removeActiveQueue(tokenId);
     }
 
-    @Transactional
     public void activeToken() {
-        List<Queue> pendingQueues = queueRepository.findTopNByWaitStatusOrderByCreatedAt("WAIT", 10);
+        Set<String> tokens = queueRedisRepository.getWaitingQueues(10);
 
-        List<Long> queueIds = pendingQueues.stream()
-                .map(Queue::getId)
-                .collect(Collectors.toList());
+        long expiryTime = System.currentTimeMillis() + (5 * 60 * 1000); // 만료시간 5분 설정
 
-        // 활성 상태로 업데이트
-        queueRepository.updateQueueStatus(QueueStatus.ACTIVE, queueIds);
+        if (tokens != null && !tokens.isEmpty()) {
+            for(String tokenId : tokens){
+                queueRedisRepository.createActiveQueue(tokenId);
+                queueRedisRepository.putHashExpiryTime(tokenId, String.valueOf(expiryTime));
+                queueRedisRepository.removeWaitingQueue(tokenId);
+            }
+
+            log.info("활성화된 토큰 수:" + tokens.size());
+        }
     }
 
-    @Transactional
     public int deleteToken() {
-        LocalDateTime now = LocalDateTime.now();
-        return queueRepository.deleteExpiredTokens(now);
+        Map<String, String> tokenExpiryMap = queueRedisRepository.getHashExpiryTime();
+
+        int result = 0;
+
+        if(!tokenExpiryMap.isEmpty()){
+            long currentTime = System.currentTimeMillis();
+            List<String> expiredTokens = new ArrayList<>();
+            for (Map.Entry<String, String> entry : tokenExpiryMap.entrySet()) {
+                String tokenId = entry.getKey();
+                long expiryTime = Long.parseLong(entry.getValue());
+
+                // 만료 시간이 현재 시간보다 작으면 만료된 토큰 리스트에 추가
+                if (expiryTime <= currentTime) {
+                    expiredTokens.add(tokenId);
+                }
+            }
+
+            if(!expiredTokens.isEmpty()){
+                for(String expiredToken : expiredTokens){
+                    queueRedisRepository.removeActiveQueue(expiredToken);
+                    queueRedisRepository.removeHashExpiryTime(expiredToken);
+                }
+            }
+            result = expiredTokens.size();
+        }
+        return result;
     }
 }
