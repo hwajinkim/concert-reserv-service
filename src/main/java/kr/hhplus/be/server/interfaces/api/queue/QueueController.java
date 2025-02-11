@@ -10,6 +10,7 @@ import kr.hhplus.be.server.common.response.ApiResponse;
 import kr.hhplus.be.server.common.response.ResponseCode;
 import kr.hhplus.be.server.interfaces.api.dto.queue.QueueTokenRequest;
 import kr.hhplus.be.server.interfaces.api.dto.queue.QueueTokenResponse;
+import kr.hhplus.be.server.interfaces.api.dto.queue.RedisQueueTokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +27,14 @@ public class QueueController {
     //1. 유저 대기열 토큰 발급 API
     @Operation(summary = "유저 대기열 토큰 발급")
     @PostMapping("/queues")
-    public ApiResponse<QueueTokenResponse> createQueueToken(@RequestBody QueueTokenRequest queueTokenRequest, HttpServletResponse response){
+    public ApiResponse<RedisQueueTokenResponse> createQueueToken(@RequestBody QueueTokenRequest queueTokenRequest, HttpServletResponse response){
 
         QueueTokenParam queueTokenParam = QueueTokenParam.from(queueTokenRequest);
-        QueueTokenResponse queueTokenResponse = QueueTokenResponse.from(queueFacade.createQueueToken(queueTokenParam));
+        RedisQueueTokenResponse redisQueueTokenResponse = RedisQueueTokenResponse.from(queueFacade.createQueueToken(queueTokenParam));
 
-        response.setHeader("Queue-Token-Queue-Id", String.valueOf(queueTokenResponse.queueId()));
-        response.setHeader("Queue-Token-User-Id", String.valueOf(queueTokenResponse.userId()));
+        response.setHeader("Queue-Token-Queue-Id", redisQueueTokenResponse.tokenId());
+        response.setHeader("Queue-Token-User-Id", redisQueueTokenResponse.userId());
 
-        return ApiResponse.success(ResponseCode.TOKEN_CREATE_SUCCESS.getMessage(), queueTokenResponse);
+        return ApiResponse.success(ResponseCode.TOKEN_CREATE_SUCCESS.getMessage(), redisQueueTokenResponse);
     }
 }

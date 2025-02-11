@@ -26,7 +26,7 @@ public class PaymentController {
     @Operation(summary = "결제 신청")
     @PostMapping("/payments")
     public ApiResponse<PaymentResponse> createPayment(
-            @RequestHeader(value = "Queue-Token-Queue-Id", required = false) Long tokenQueueId,
+            @RequestHeader(value = "Queue-Token-Queue-Id", required = false) String tokenQueueId,
             @RequestHeader(value = "Queue-Token-User-Id", required = false) Long tokenUserId,
             @RequestBody PaymentRequest paymentRequest){
 

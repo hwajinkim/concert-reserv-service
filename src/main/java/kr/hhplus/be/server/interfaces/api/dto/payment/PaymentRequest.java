@@ -5,9 +5,9 @@ public record PaymentRequest(
         Long seatId,
         Long userId, // 유저 대기열 토큰에서 읽어올 값.
 
-        Long queueId
+        String queueId
 ) {
-    public PaymentRequest withUserIdAndQueueId(Long tokenUserId, Long tokenQueueId, PaymentRequest paymentRequest) {
+    public PaymentRequest withUserIdAndQueueId(Long tokenUserId, String tokenQueueId, PaymentRequest paymentRequest) {
         return new PaymentRequest(paymentRequest.reservationId(), paymentRequest.seatId(), tokenUserId, tokenQueueId);
     }
 }
