@@ -20,3 +20,5 @@
 
 <!-- 6. [아키텍처 구조]()--> 
 
+## 캐싱으로 성능 최적화
+[Redis를 활용하여 캐싱 및 성능 최적화 보고서](https://github.com/hwajinkim/concert-reserve-service/blob/master/docs/redis-optimization/%EB%A0%88%EB%94%94%EC%8A%A4_%EC%84%B1%EB%8A%A5_%EC%B5%9C%EC%A0%81%ED%99%94.md)
