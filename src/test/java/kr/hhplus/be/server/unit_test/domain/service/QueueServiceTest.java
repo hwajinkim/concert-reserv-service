@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -32,6 +33,7 @@ public class QueueServiceTest {
         //given
         Long userId = 1L;
 
+        String mockTokenId = UUID.randomUUID().toString();
         Queue mockQueue = Queue.builder()
                     .id(1L)
                     .userId(userId)
@@ -41,10 +43,10 @@ public class QueueServiceTest {
         when(queueRepository.save(any(Queue.class))).thenReturn(mockQueue);
 
         //when
-        Queue savedQueue = queueService.createQueueToken(userId);
+        String tokenId = queueService.createQueueToken(userId);
 
         //then
-        assertEquals(savedQueue, mockQueue);
+        assertEquals(tokenId, mockTokenId);
         verify(queueRepository, times(1)).save(any(Queue.class));
     }
 

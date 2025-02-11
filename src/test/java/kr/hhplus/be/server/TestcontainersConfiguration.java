@@ -34,8 +34,8 @@ class TestcontainersConfiguration {
 		REDIS_CONTAINER.start();
 
 		// Spring Redis 환경 속성 설정
-		System.setProperty("spring.redis.host", REDIS_CONTAINER.getHost());
-		System.setProperty("spring.redis.port", REDIS_CONTAINER.getMappedPort(6379).toString());
+		System.setProperty("spring.data.redis.host", REDIS_CONTAINER.getHost());
+		System.setProperty("spring.data.redis.port", REDIS_CONTAINER.getMappedPort(6379).toString());
 	}
 
 	@PreDestroy

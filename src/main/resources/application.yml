@@ -50,6 +50,16 @@ spring:
       host: localhost
       port: 6379
 
+---
+spring.config.activate.on-profile: redis
+
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6378
+
+
 springdoc:
   version: V.0.0.1
   swagger-ui.path: /swagger.html

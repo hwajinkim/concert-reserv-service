@@ -54,7 +54,7 @@ public class PaymentFacade {
             savedPayment = paymentService.createPayment(updatedSchedule, updatedSeat, reservation);
 
             //5. *유저 대기열 토큰* 제거
-            Queue updatedQueue = queueService.updateQueue(paymentParam.queueId());
+            queueService.removeQueue(paymentParam.queueId().toString());
         } else {
             throw new ReservationBadStatusException("유효하지 않은 예약 상태입니다.");
         }

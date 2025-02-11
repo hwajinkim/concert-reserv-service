@@ -19,6 +19,14 @@ services:
     networks:
       - my-network
 
+---
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6378:6378"
+
 networks:
   default:
     driver: bridge

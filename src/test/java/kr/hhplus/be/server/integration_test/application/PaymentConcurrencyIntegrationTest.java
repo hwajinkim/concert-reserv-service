@@ -23,6 +23,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -87,7 +88,8 @@ public class PaymentConcurrencyIntegrationTest extends BaseIntegrationTest{
     void 비관적락_같은_유저가_동시에_20번_결제_신청하면_1번만_결제성공() throws InterruptedException {
         //given
         User user = users.get(0);
-        Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
+        //Queue queue = queueSetUp.saveQueue(user.getId(), QueueStatus.WAIT, LocalDateTime.now().plusMinutes(10));
+        String queueId = UUID.randomUUID().toString();
 
         Concert concert = concertSetUp.saveConcert("Awesome Concert", scheduleList);
 
@@ -105,7 +107,7 @@ public class PaymentConcurrencyIntegrationTest extends BaseIntegrationTest{
                 schedule.getSeats().get(0).getSeatPrice(),
                 LocalDateTime.now().plusMinutes(5)
         );
-        PaymentParam paymentParam = new PaymentParam(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queue.getId());
+        PaymentParam paymentParam = new PaymentParam(reservation.getId(), schedule.getSeats().get(0).getId(), user.getId(), queueId);
 
         int threadCount = 20;
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
