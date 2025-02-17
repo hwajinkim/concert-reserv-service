@@ -9,6 +9,8 @@ import kr.hhplus.be.server.domain.reservation.ReservationService;
 import kr.hhplus.be.server.domain.concert.Seat;
 import kr.hhplus.be.server.domain.concert.SeatStatus;
 import kr.hhplus.be.server.domain.reservation.ReservationState;
+import kr.hhplus.be.server.domain.reservation.event.ReservationEventPublisher;
+import kr.hhplus.be.server.domain.reservation.event.ReservationSuccessEvent;
 import kr.hhplus.be.server.interfaces.aop.DistributedLock;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,7 @@ public class ReservationFacade {
 
     private final ConcertService concertService;
     private final ReservationService reservationService;
+    private final ReservationEventPublisher reservationEventPublisher;
 
     @DistributedLock(key = "#reservationParam.scheduleId")
     public ReservationResult createSeatReservation(ReservationParam reservationParam) {
@@ -32,7 +35,8 @@ public class ReservationFacade {
         Schedule updatedSchedule = concertService.updateScheduleRemainingTicket(reservationParam.scheduleId(), -1);
         //3. 예약(reservation) 신청
         Reservation savedReservation = reservationService.creatSeatReservation(updatedSeat, reservationParam.userId());
-
+        //4. 예약 성공 이벤트 발행
+        reservationEventPublisher.success(new ReservationSuccessEvent(savedReservation.getId()));
         return new ReservationResult(savedReservation.getId(), updatedSchedule.getId(),
                 savedReservation.getSeatId(), savedReservation.getUserId(), savedReservation.getReservationState(), savedReservation.getCreatedAt());
     }
