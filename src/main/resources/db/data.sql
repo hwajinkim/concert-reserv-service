@@ -1,4 +1,4 @@
-INSERT INTO users (user_id, user_name, point_Balance, created_at, updated_at) VALUES
+INSERT INTO users (user_id, user_name, point_balance, created_at, updated_at) VALUES
 (1, 'Alice', 100000.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00'),
 (2, 'Bob', 50000.50, '2025-01-02 11:30:00', '2025-01-02 11:30:00'),
 (3, 'Charlie', 150000.75, '2025-01-03 14:00:00', '2025-01-03 14:00:00'),
@@ -40,8 +40,5 @@ INSERT INTO seat (seat_id, schedule_id, seat_number, seat_status, seat_price, cr
 (3, 1, 3, 'AVAILABLE', 50000.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00'),
 (4, 1, 4, 'AVAILABLE', 60000.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00'),
 (5, 1, 5, 'OCCUPIED', 60000.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00');
-
-INSERT INTO reservation (user_id, seat_id, reservation_state, seat_price, created_at, updated_at, expired_at) VALUES
-(1, 1, 'PANDING', 50.00, '2025-01-01 10:00:00', '2025-01-01 10:00:00', '2025-01-15 23:59:59');
 
 
