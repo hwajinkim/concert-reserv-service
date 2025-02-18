@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.infrastructure.event.reservation;
+package kr.hhplus.be.server.interfaces.event.reservation;
 
 import kr.hhplus.be.server.domain.dataplatform.DataPlatformClient;
 import kr.hhplus.be.server.domain.reservation.event.ReservationSuccessEvent;

@@ -39,6 +39,12 @@ services:
     networks:
       - my-network
 
+  redis_2:
+    image: redis
+    container_name: redis
+    ports:
+      - "6378:6378"
+
 networks:
   my-network:
     driver: bridge
