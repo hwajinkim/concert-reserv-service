@@ -48,6 +48,8 @@ dependencies {
 	testImplementation("com.redis.testcontainers:testcontainers-redis:1.6.4")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:mysql")
+	testImplementation("org.springframework.kafka:spring-kafka-test")
+	testImplementation("org.testcontainers:kafka:1.19.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testCompileOnly("org.projectlombok:lombok")
 	testAnnotationProcessor("org.projectlombok:lombok")
@@ -59,9 +61,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("org.redisson:redisson-spring-boot-starter:3.33.0")
 
-
+	// Kafka
+	implementation("org.springframework.kafka:spring-kafka")
 }
 
 tasks.withType<Test> {
 	useJUnitPlatform()
 	systemProperty("user.timezone", "UTC") }
+
