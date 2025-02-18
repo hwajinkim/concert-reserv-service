@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.infrastructure.kafka;
+package kr.hhplus.be.server.domain.common.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
