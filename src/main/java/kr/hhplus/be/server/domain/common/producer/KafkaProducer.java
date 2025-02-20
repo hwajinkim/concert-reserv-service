@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.infrastructure.kafka;
+package kr.hhplus.be.server.domain.common.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +12,8 @@ public class KafkaProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendMessage(String topic, String message) {
-        kafkaTemplate.send(topic, message);
-        log.info("Sent message: " + message);
+    public void send(String topic, String payload) {
+        kafkaTemplate.send(topic, payload);
+        log.info("Sent payload: " + payload);
     }
 }
