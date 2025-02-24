@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 public class QueueScheduler {
     private final QueueService queueService;
 
-    @Scheduled(fixedRate = 10000) // 1분마다 실행
+    @Scheduled(fixedRate = 1000) // 1초마다 실행
     public void processQueue() {
         // 대기 토큰 활성화
         queueService.activeToken();
     }
 
-    @Scheduled(fixedRate = 10000) // 1분마다 실행
+    @Scheduled(fixedRate = 1000) // 1초마다 실행
     public void expiredQueue() {
         // 만료시간 지난 토큰 제거
         queueService.deleteToken();
